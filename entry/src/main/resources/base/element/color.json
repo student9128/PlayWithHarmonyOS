@@ -3,6 +3,15 @@
     {
       "name": "start_window_background",
       "value": "#FFFFFF"
-    }
+    },
+    {"name": "tab_background","value": "#ffffff"},
+    {"name": "tab_active_color","value": "#FA7070"},
+    {"name": "tab_normal_color","value": "#32012F"},
+    {"name": "text_color","value": "#31363F"},
+    {"name": "white","value": "#ffffff"},
+    {"name": "black","value": "#000000"},
+    {"name": "transparent","value": "#00000000"},
+    {"name": "primary_color","value": "#FA7070"},
+    {"name": "background_color","value": "#eeeeee"}
   ]
 }

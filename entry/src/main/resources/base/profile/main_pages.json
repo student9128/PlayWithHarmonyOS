@@ -1,5 +1,14 @@
 {
   "src": [
-    "pages/Index"
+    "pages/Index",
+    "pages/BasicComponent",
+    "pages/ContainerComponent",
+    "pages/CanvasDrawComponent",
+    "pages/AnimComponent",
+    "pages/DialogComponent",
+    "pages/basic_component/AlphabetIndexerPage",
+    "pages/basic_component/BlankPage",
+    "pages/basic_component/ButtonPage",
+    "pages/basic_component/CheckboxPage"
   ]
 }
