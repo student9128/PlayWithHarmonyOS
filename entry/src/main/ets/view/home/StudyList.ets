@@ -1,9 +1,23 @@
 import router from '@ohos.router'
+import resourceManager from '@ohos.resourceManager'
 import { CustomType, CustomType2, RouteConstants } from '../../common/RouteConstants'
 import LogUtils from '../../utils/LogUtils'
+import common from '@ohos.app.ability.common'
+import util from '@ohos.util'
 
 @Component
 export struct StudyList {
+  aboutToAppear() {
+    let context = getContext(this) as common.UIAbilityContext
+    context.resourceManager.getRawFileContent('routes.json')
+      .then(value => {
+        let textDecoder = util.TextDecoder.create('utf-8', { ignoreBOM: true })
+        let retStr = textDecoder.decodeWithStream(value, { stream: false })
+      }).catch(reason => {
+      console.error(`reason=${reason}`)
+    })
+  }
+
   build() {
     Column() {
       List() {
