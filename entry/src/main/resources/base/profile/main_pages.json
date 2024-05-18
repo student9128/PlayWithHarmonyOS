@@ -2,11 +2,7 @@
   "src": [
     "pages/Index",
     "pages/NotFoundPage",
-    "pages/BasicComponent",
-    "pages/ContainerComponent",
-    "pages/CanvasDrawComponent",
-    "pages/AnimComponent",
-    "pages/DialogComponent",
+    "pages/ArkComponentPage",
     "pages/basic_component/AlphabetIndexerPage",
     "pages/basic_component/BlankPage",
     "pages/basic_component/ButtonPage",
@@ -36,6 +32,8 @@
     "pages/basic_component/TextPickerPage",
     "pages/basic_component/TimePickerPage",
     "pages/basic_component/TogglePage",
-    "pages/basic_component/WebPage"
+    "pages/basic_component/WebPage",
+    "pages/container_component/BadgePage"
+
   ]
 }

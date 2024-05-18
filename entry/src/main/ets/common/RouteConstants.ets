@@ -1,14 +1,8 @@
 export interface CustomType { [key: string]: string }
+export interface CustomType2 { [key: string]: any }
 
 export class RouteConstants {
   static readonly NOT_FOUND_PAGE="pages/NotFoundPage"
-  static readonly STUDY_LIST: Array<CustomType> = [{ "title": "BasicComponent", "page": "pages/BasicComponent" },
-    { "title": "ContainerComponent", "page": "pages/ContainerComponent" },
-    { "title": "CanvasDrawComponent", "page": "pages/CanvasDrawComponent" },
-    { "title": "AnimComponent", "page": "pages/AnimComponent" },
-    { "title": "DialogComponent", "page": "pages/DialogComponent" },
-    { "title": "CustomXComponent", "page": "pages/CustomXComponent" },
-  ]
   static readonly BASIC_COMPONENT:Array<CustomType>=[{"title":"AlphabetIndexer","page":"pages/basic_component/AlphabetIndexerPage"},
     {"title":"Blank","page":"pages/basic_component/BlankPage"},
     {"title":"Button","page":"pages/basic_component/ButtonPage"},
@@ -44,4 +38,13 @@ export class RouteConstants {
     {"title":"Web","page":"pages/basic_component/WebPage"},
     {"title":"XComponent","page":""},
   ]
+  static readonly CONTAINER_COMPONENT:Array<CustomType>=[{"title":"Badge","page":"pages/container_component/BadgePage"}]
+  static readonly STUDY_LIST: Array<CustomType2> = [{ "title": "BasicComponent", "data": RouteConstants.BASIC_COMPONENT },
+    { "title": "ContainerComponent", "data": RouteConstants.CONTAINER_COMPONENT },
+    // { "title": "CanvasDrawComponent", "page": "pages/CanvasDrawComponent" },
+    // { "title": "AnimComponent", "page": "pages/AnimComponent" },
+    // { "title": "DialogComponent", "page": "pages/DialogComponent" },
+    // { "title": "CustomXComponent", "page": "pages/CustomXComponent" },
+  ]
+
 }

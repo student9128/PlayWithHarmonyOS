@@ -88,12 +88,16 @@ class MyDataSource extends BasicDataSource {
 
 @Entry
 @Component
-struct BasicComponent {
+struct ArkComponentPage {
   private data: MyDataSource = new MyDataSource();
+  private _title:string=''
 
   aboutToAppear() {
-    for (let i = 0; i <= RouteConstants.BASIC_COMPONENT.length; i++) {
-      this.data.pushData(RouteConstants.BASIC_COMPONENT[i])
+    var params = router.getParams()['data'] as Array<CustomType>
+    this._title = router.getParams()['title']
+    for (let i = 0; i <= params.length; i++) {
+      console.info(`${JSON.stringify(params[i])}`)
+      this.data.pushData(params[i])
     }
   }
 
@@ -119,7 +123,7 @@ struct BasicComponent {
         }.cachedCount(5)
       }.height("100%").width("100%").padding({ left: 10, right: 10 })
     }.titleMode(NavigationTitleMode.Mini)
-    .title('BasicComponent')
+    .title(this._title)
   }
 }
 
