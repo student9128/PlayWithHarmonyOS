@@ -1,9 +1,129 @@
-@Entry
-@Component
-struct BasicComponent{
-  build(){
-    Column(){
-      Text('BasicComponent')
+import router from '@ohos.router';
+import { CustomType, RouteConstants } from '../common/RouteConstants';
+import LogUtils from '../utils/LogUtils';
+
+class BasicDataSource implements IDataSource {
+  private listeners: DataChangeListener[] = [];
+  private originDataArray: Array<CustomType> = [];
+
+  totalCount(): number {
+    return 0;
+  }
+
+  getData(index: number) {
+    return this.originDataArray[index];
+  }
+
+  registerDataChangeListener(listener: DataChangeListener) {
+    if (this.listeners.indexOf(listener) < 0) {
+      this.listeners.push(listener)
+    }
+    LogUtils.printInfo(`listener=${this.listeners.length}`)
+  }
+
+  unregisterDataChangeListener(listener: DataChangeListener) {
+    const pos = this.listeners.indexOf(listener)
+    if (pos >= 0) {
+      this.listeners.slice(pos, 1)
     }
   }
+
+  // 通知LazyForEach组件需要重载所有子组件
+  notifyDataReload(): void {
+    this.listeners.forEach(listener => {
+      listener.onDataReloaded();
+    })
+  }
+
+  // 通知LazyForEach组件需要在index对应索引处添加子组件
+  notifyDataAdd(index: number): void {
+    this.listeners.forEach(listener => {
+      listener.onDataAdd(index);
+    })
+  }
+
+  // 通知LazyForEach组件在index对应索引处数据有变化，需要重建该子组件
+  notifyDataChange(index: number): void {
+    this.listeners.forEach(listener => {
+      listener.onDataChange(index);
+    })
+  }
+
+  // 通知LazyForEach组件需要在index对应索引处删除该子组件
+  notifyDataDelete(index: number): void {
+    this.listeners.forEach(listener => {
+      listener.onDataDelete(index);
+    })
+  }
+
+  // 通知LazyForEach组件将from索引和to索引处的子组件进行交换
+  notifyDataMove(from: number, to: number): void {
+    this.listeners.forEach(listener => {
+      listener.onDataMove(from, to);
+    })
+  }
+}
+
+class MyDataSource extends BasicDataSource {
+  private dataArray: Array<CustomType> = [];
+
+  public totalCount(): number {
+    return this.dataArray.length;
+  }
+
+  public getData(index: number): CustomType {
+    return this.dataArray[index];
+  }
+
+  public addData(index: number, data: CustomType): void {
+    this.dataArray.splice(index, 0, data);
+    this.notifyDataAdd(index);
+  }
+
+  public pushData(data: CustomType): void {
+    this.dataArray.push(data);
+    this.notifyDataAdd(this.dataArray.length - 1);
+  }
+}
+
+@Entry
+@Component
+struct BasicComponent {
+  private data: MyDataSource = new MyDataSource();
+
+  aboutToAppear() {
+    for (let i = 0; i <= RouteConstants.BASIC_COMPONENT.length; i++) {
+      this.data.pushData(RouteConstants.BASIC_COMPONENT[i])
+    }
+  }
+
+  build() {
+    Navigation() {
+      Column() {
+        List() {
+          LazyForEach(this.data, (item: CustomType) => {
+            ListItem() {
+              if (item) {
+                Text(item["title"]).listItemStyle().textAlign(TextAlign.Center)
+                  .onClick(() => {
+                    LogUtils.printInfo(item)
+                    if (item["page"] != '') {
+                      router.pushUrl({ url: item["page"] })
+                    } else {
+                      router.pushUrl({ url: RouteConstants.NOT_FOUND_PAGE })
+                    }
+                  })
+              }
+            }.margin({ top: 10 })
+          })
+        }.cachedCount(5)
+      }.height("100%").width("100%").padding({ left: 10, right: 10 })
+    }.titleMode(NavigationTitleMode.Mini)
+    .title('BasicComponent')
+  }
+}
+
+@Styles
+function listItemStyle() {
+  .backgroundColor('white').width('100%').padding({ left: 16, right: 16, top: 30, bottom: 30 }).borderRadius(16)
 }

@@ -1,6 +1,7 @@
 {
   "src": [
     "pages/Index",
+    "pages/NotFoundPage",
     "pages/BasicComponent",
     "pages/ContainerComponent",
     "pages/CanvasDrawComponent",
@@ -9,6 +10,32 @@
     "pages/basic_component/AlphabetIndexerPage",
     "pages/basic_component/BlankPage",
     "pages/basic_component/ButtonPage",
-    "pages/basic_component/CheckboxPage"
+    "pages/basic_component/CheckboxPage",
+    "pages/basic_component/DataPanelPage",
+    "pages/basic_component/DatePickerPage",
+    "pages/basic_component/DividerPage",
+    "pages/basic_component/GaugePage",
+    "pages/basic_component/ImagePage",
+    "pages/basic_component/ImageAnimatorPage",
+    "pages/basic_component/LoadingProgressPage",
+    "pages/basic_component/MarqueePage",
+    "pages/basic_component/MenuPage",
+    "pages/basic_component/NavigationPage",
+    "pages/basic_component/ProgressPage",
+    "pages/basic_component/QRCodePage",
+    "pages/basic_component/RadioPage",
+    "pages/basic_component/RatingPage",
+    "pages/basic_component/RichTextPage",
+    "pages/basic_component/ScrollBarPage",
+    "pages/basic_component/SearchPage",
+    "pages/basic_component/SelectPage",
+    "pages/basic_component/SliderPage",
+    "pages/basic_component/SpanPage",
+    "pages/basic_component/StepperPage",
+    "pages/basic_component/TextPage",
+    "pages/basic_component/TextPickerPage",
+    "pages/basic_component/TimePickerPage",
+    "pages/basic_component/TogglePage",
+    "pages/basic_component/WebPage"
   ]
 }

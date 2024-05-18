@@ -19,6 +19,7 @@ struct Index {
 
   build() {
     Column() {
+      Navigation(){
       Tabs({ barPosition: BarPosition.End, controller: this.tabController }) {
         TabContent() {
           Column(){
@@ -35,6 +36,21 @@ struct Index {
       .onChange((index)=>{
         this.currentIndex = index
       }).backgroundColor($r('app.color.white'))
+      }.title(this.NavigationTitle())
+      .titleMode(NavigationTitleMode.Mini)
+      .hideBackButton(true)
+      .align(Alignment.Center)
+      // .margin({left:-25})
     }
+  }
+  @Builder NavigationTitle(){
+    Row(){
+      Text('Study')
+        .fontWeight(FontWeight.Bold)
+        .fontSize(20)
+    }
+    .height('100%')
+    .justifyContent(FlexAlign.Center)
+    // .backgroundColor($r('app.color.tab_active_color'))
   }
 }
