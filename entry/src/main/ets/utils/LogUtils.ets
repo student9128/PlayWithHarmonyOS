@@ -1,11 +1,11 @@
 import hilog from '@ohos.hilog'
 
 export default class LogUtils {
-  static printInfo(...args: string[]) {
+  static printInfo(...args: ESObject[]) {
     hilog.info(0x0000, 'testTag', '%{public}s', args)
   }
 
-  static printError(...args: string[]) {
+  static printError(...args: ESObject[]) {
     hilog.error(0x0000, 'testTag', '%{public}s', args)
   }
 }

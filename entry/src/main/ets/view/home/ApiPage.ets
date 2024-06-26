@@ -15,7 +15,7 @@ export struct ApiPage {
         // }).catch(error => {
         //   console.log(`error=${error}`)
         // })
-        httpPost(url,{ "username": "test", "password": "123456" }).then((value:ESObject)=>{
+        httpPost(url,{ "username": "test01", "password": "123456" }).then((value:ESObject)=>{
           LogUtils.printInfo(`response=${JSON.stringify(value)}`)
         }).catch((error:ESObject)=>{
           LogUtils.printInfo(`error=${JSON.stringify(error)}`)

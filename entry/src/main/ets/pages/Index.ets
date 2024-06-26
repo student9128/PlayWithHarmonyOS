@@ -14,9 +14,17 @@ struct Index {
   @Builder
   TabBuilder(index: number, name: string) {
     Column() {
-      Text(name)
-        .fontColor(this.currentIndex == index ? $r('app.color.tab_active_color') : $r('app.color.tab_normal_color'))
-        .fontSize(16)
+      Column() {
+        Text(name)
+          .fontColor($r('app.color.tab_normal_color'))
+          .fontSize(16)
+      }
+      .width(100)
+      .height(40)
+      .justifyContent(FlexAlign.Center)
+      .borderRadius(20)
+      .backgroundColor(this.currentIndex == index ? $r('app.color.color_primary_opacity_30') :
+      $r('app.color.transparent'))
     }.height(56)
     .justifyContent(FlexAlign.Center)
   }
@@ -42,7 +50,7 @@ struct Index {
         .onChange((index) => {
           this.currentIndex = index
           this._title = index == 0 ? 'Study' : 'Api'
-        }).backgroundColor($r('app.color.white'))
+        }).barOverlap(true).barBackgroundBlurStyle(BlurStyle.Regular)
       }.title(this.NavigationTitle())
       .titleMode(NavigationTitleMode.Mini)
       .hideBackButton(true)
@@ -60,6 +68,7 @@ struct Index {
         .fontSize(20)
     }
     .height('100%')
+    .width('100%')
     .justifyContent(FlexAlign.Center)
 
     // .backgroundColor($r('app.color.tab_active_color'))

@@ -10,8 +10,11 @@
     {"name": "text_color","value": "#31363F"},
     {"name": "white","value": "#ffffff"},
     {"name": "black","value": "#000000"},
+    {"name": "gray","value": "#eeeeee"},
     {"name": "transparent","value": "#00000000"},
     {"name": "primary_color","value": "#FA7070"},
-    {"name": "background_color","value": "#eeeeee"}
+    {"name": "color_primary_opacity_30","value": "#4DFA7070"},
+    {"name": "background_color","value": "#FFFFFF"},
+    {"name": "color_background_list_item","value": "#eeeeee"}
   ]
 }

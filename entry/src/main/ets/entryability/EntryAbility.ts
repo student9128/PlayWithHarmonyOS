@@ -46,7 +46,7 @@ export default class EntryAbility extends UIAbility {
       windowClass.setUIContent('pages/Index',(err)=>{
         if(err.code==0){
 
-      let color: string = '#eeeeee';
+      let color: string = '#ffffff';
       try {
         windowClass.setWindowBackgroundColor(color);
       } catch (exception) {

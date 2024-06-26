@@ -136,5 +136,5 @@ struct ArkComponentPage {
 
 @Styles
 function listItemStyle() {
-  .backgroundColor('white').width('100%').padding({ left: 16, right: 16, top: 30, bottom: 30 }).borderRadius(16)
+  .backgroundColor($r('app.color.color_background_list_item')).width('100%').padding({ left: 16, right: 16, top: 30, bottom: 30 }).borderRadius(16)
 }

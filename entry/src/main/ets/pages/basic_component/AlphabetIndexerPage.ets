@@ -4,6 +4,7 @@ struct AlphabetIndexerPage {
   @State message: string = 'AlphabetIndexerPage'
 
   build() {
+    Navigation(){
     Row() {
       Column() {
         Text(this.message)
@@ -13,5 +14,6 @@ struct AlphabetIndexerPage {
       .width('100%')
     }
     .height('100%')
+    }.titleMode(NavigationTitleMode.Mini)
   }
 }
