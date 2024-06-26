@@ -13,7 +13,7 @@ export struct StudyList {
       .then(value => {
         let textDecoder = util.TextDecoder.create('utf-8', { ignoreBOM: true })
         let retStr = textDecoder.decodeWithStream(value, { stream: false })
-      }).catch(reason => {
+      }).catch((reason:ESObject) => {
       console.error(`reason=${reason}`)
     })
   }
@@ -23,13 +23,13 @@ export struct StudyList {
       List() {
         ForEach(RouteConstants.STUDY_LIST, (item: CustomType2) => {
           ListItem() {
-            Text(item["title"]).listItemStyle().textAlign(TextAlign.Center)
+            Text(item.title).listItemStyle().textAlign(TextAlign.Center)
               .onClick(() => {
-                LogUtils.printInfo(item)
-                console.log(`${item['data']}`)
+                // LogUtils.printInfo(item)
+                console.log(`${item.data}`)
                 router.pushUrl({
                   url: 'pages/ArkComponentPage',
-                  params: { "data": item['data'], "title": `${item['title']}` }
+                  params: { "data": item.data, "title": `${item.title}` }
                 }, (err) => {
                   if (err) {
                     console.error(`pushUrl failed, code is ${err.code}, message is ${err.message}`);

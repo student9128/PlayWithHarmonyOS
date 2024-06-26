@@ -1,6 +1,7 @@
 import router from '@ohos.router';
 import { CustomType, RouteConstants } from '../common/RouteConstants';
 import LogUtils from '../utils/LogUtils';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 
 class BasicDataSource implements IDataSource {
   private listeners: DataChangeListener[] = [];
@@ -85,6 +86,10 @@ class MyDataSource extends BasicDataSource {
     this.notifyDataAdd(this.dataArray.length - 1);
   }
 }
+interface ParamsModel{
+  data:CustomType[],
+  title:string
+}
 
 @Entry
 @Component
@@ -93,11 +98,12 @@ struct ArkComponentPage {
   private _title:string=''
 
   aboutToAppear() {
-    var params = router.getParams()['data'] as Array<CustomType>
-    this._title = router.getParams()['title']
-    for (let i = 0; i <= params.length; i++) {
-      console.info(`${JSON.stringify(params[i])}`)
-      this.data.pushData(params[i])
+    let params = router.getParams() as ParamsModel
+    // let params = router.getParams()['data'] as Array<CustomType>
+    this._title = params.title
+    for (let i = 0; i <= params.data.length; i++) {
+      console.info(`${JSON.stringify(params.data[i])}`)
+      this.data.pushData(params.data[i])
     }
   }
 
@@ -108,11 +114,12 @@ struct ArkComponentPage {
           LazyForEach(this.data, (item: CustomType) => {
             ListItem() {
               if (item) {
-                Text(item["title"]).listItemStyle().textAlign(TextAlign.Center)
+                Text(item.title).listItemStyle().textAlign(TextAlign.Center)
                   .onClick(() => {
-                    LogUtils.printInfo(item)
-                    if (item["page"] != '') {
-                      router.pushUrl({ url: item["page"] })
+                    // LogUtils.printInfo(item)
+                    hilog.info(0x0000, 'testTag', '%{public}s', item)
+                    if (item.page != '') {
+                      router.pushUrl({ url: item.page })
                     } else {
                       router.pushUrl({ url: RouteConstants.NOT_FOUND_PAGE })
                     }

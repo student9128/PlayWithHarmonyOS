@@ -1,5 +1,5 @@
-export interface CustomType { [key: string]: string }
-export interface CustomType2 { [key: string]: any }
+export interface CustomType { title: string,page:string }
+export interface CustomType2 { title: string,data:CustomType[] }
 
 export class RouteConstants {
   static readonly NOT_FOUND_PAGE="pages/NotFoundPage"

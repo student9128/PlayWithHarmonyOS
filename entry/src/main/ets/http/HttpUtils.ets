@@ -22,7 +22,7 @@ import LogUtils from '../utils/LogUtils';
 //   }
 // }
 
-const requestData = (method, url, body) => {
+const requestData = (method:string, url:string, body:ESObject) => {
   const instance = axios.create({
     baseURL: 'https://www.wanandroid.com',
     timeout: 60000,
@@ -30,7 +30,7 @@ const requestData = (method, url, body) => {
   });
   // instance.request()
   if (method == 'GET') {
-    return new Promise((resolve, reject) => {
+    return new Promise<ESObject>((resolve, reject) => {
       instance.get<string, AxiosResponse<string>>(url, body)
         .then((response: AxiosResponse) => {
           _handleResponse(response, reject, resolve);
@@ -40,7 +40,7 @@ const requestData = (method, url, body) => {
       })
     })
   } else if (method == 'POST') {
-    return new Promise((resolve, reject) => {
+    return new Promise<ESObject>((resolve, reject) => {
       instance.post<string, AxiosResponse<string>>(url, body)
         .then((response: AxiosResponse) => {
           _handleResponse(response, reject, resolve);
@@ -49,21 +49,27 @@ const requestData = (method, url, body) => {
         LogUtils.printError(`${JSON.stringify(err)}`)
       })
     })
+  }else{
+  return new Promise<ESObject>((resolve,reject)=>{});
   }
 }
 
-export const httpPost = (url, body) => {
-  return requestData("POST", url, body)
+export const httpPost = (url:string, body:ESObject): Promise<ESObject> => {
+  return requestData("POST", url, body);
 }
 
-export const httpGet = (url, body) => {
+export const httpGet = (url:string, body:ESObject): Promise<ESObject> => {
   return requestData("GET", url, body)
 }
 
-
-function _handleResponse(response: AxiosResponse<any, any>, reject: (reason?: any) => void, resolve: (value: unknown) => void) {
+interface ErrorResponse{
+  "data": null,
+  "errorCode": -1,
+  "errorMsg": ""
+};
+function _handleResponse(response: AxiosResponse, reject: (reason?: ESObject) => void, resolve: (value: ESObject) => void) {
   if (response.status == 200) {
-    const res = response.data || {};
+    const res: ESObject = response.data || {};
     if (res['errorCode'] != 0) {
       reject(res);
       LogUtils.printError(`${JSON.stringify(res)}`);
