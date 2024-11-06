@@ -1,4 +1,5 @@
 import { ApiPage } from '../view/home/ApiPage'
+import { MePage } from '../view/home/MePage'
 import { StudyList } from '../view/home/StudyList'
 
 @Entry
@@ -45,11 +46,16 @@ struct Index {
               ApiPage()
             }.width('100%').height('100%')
           }.tabBar(this.TabBuilder(1, 'Api')).backgroundColor($r('app.color.background_color'))
+          TabContent() {
+            Column() {
+              MePage()
+            }.width('100%').height('100%')
+          }.tabBar(this.TabBuilder(2, 'Me')).backgroundColor($r('app.color.background_color'))
         }
         .barMode(BarMode.Fixed)
         .onChange((index) => {
           this.currentIndex = index
-          this._title = index == 0 ? 'Study' : 'Api'
+          this._title = index == 0 ? 'Study' : index == 1 ? 'Api' : 'Me'
         }).barOverlap(true).barBackgroundBlurStyle(BlurStyle.Regular)
       }.title(this.NavigationTitle())
       .titleMode(NavigationTitleMode.Mini)

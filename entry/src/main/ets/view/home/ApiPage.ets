@@ -4,9 +4,13 @@ import LogUtils from '../../utils/LogUtils'
 
 @Component
 export struct ApiPage {
+  private tabController: TabsController = new TabsController()
   build() {
     Column() {
-      Button('测试').onClick(() => {
+      // Tabs({ barPosition: BarPosition.Start, controller: this.tabController }){
+      //
+      // }
+      Button('测试',).onClick(() => {
         let url = 'https://www.wanandroid.com/user/login'
         // axios.post<string, AxiosResponse<string>>(url, { "username": "test", "password": "123456" })
         //   .then(value => {
@@ -23,6 +27,7 @@ export struct ApiPage {
       })
     }.width('100%')
     .height('100%')
+    // .backgroundColor(0x2196f3)
 
   }
 }

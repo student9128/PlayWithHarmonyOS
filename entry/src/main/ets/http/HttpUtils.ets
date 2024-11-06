@@ -68,6 +68,7 @@ interface ErrorResponse{
   "errorMsg": ""
 };
 function _handleResponse(response: AxiosResponse, reject: (reason?: ESObject) => void, resolve: (value: ESObject) => void) {
+  LogUtils.printError(`${JSON.stringify(response)}`);
   if (response.status == 200) {
     const res: ESObject = response.data || {};
     if (res['errorCode'] != 0) {
