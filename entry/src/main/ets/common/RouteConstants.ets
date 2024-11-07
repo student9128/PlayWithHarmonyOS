@@ -46,5 +46,6 @@ export class RouteConstants {
     // { "title": "DialogComponent", "page": "pages/DialogComponent" },
     // { "title": "CustomXComponent", "page": "pages/CustomXComponent" },
   ]
+  static  readonly  DRAWER_PAGE :string = 'pages/DrawerLayoutPage'
 
 }

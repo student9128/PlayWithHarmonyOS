@@ -33,7 +33,8 @@
     "pages/basic_component/TimePickerPage",
     "pages/basic_component/TogglePage",
     "pages/basic_component/WebPage",
-    "pages/container_component/BadgePage"
+    "pages/container_component/BadgePage",
+    "pages/DrawerLayoutPage"
 
   ]
 }

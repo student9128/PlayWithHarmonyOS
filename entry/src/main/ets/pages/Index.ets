@@ -10,6 +10,7 @@ struct Index {
   @State selectedFontColor: string = '#007DFF'
   @State currentIndex: number = 0
   @State _title: string = "Study";
+  @State showBack: boolean = false;
   private tabController: TabsController = new TabsController()
 
   @Builder
@@ -55,11 +56,15 @@ struct Index {
         .barMode(BarMode.Fixed)
         .onChange((index) => {
           this.currentIndex = index
+          this.showBack=index==1;
           this._title = index == 0 ? 'Study' : index == 1 ? 'Api' : 'Me'
         }).barOverlap(true).barBackgroundBlurStyle(BlurStyle.Regular)
-      }.title(this.NavigationTitle())
+      }
+      // .title(this.NavigationTitle())
       .titleMode(NavigationTitleMode.Mini)
-      .hideBackButton(true)
+      // .hideBackButton(!this.showBack)
+      // .backButtonIcon($r('app.media.icon'))
+      .hideTitleBar(true)
       .align(Alignment.Center)
 
       // .margin({left:-25})
