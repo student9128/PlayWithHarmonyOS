@@ -114,7 +114,7 @@ struct ArkComponentPage {
           LazyForEach(this.data, (item: CustomType) => {
             ListItem() {
               if (item) {
-                Text(item.title).listItemStyle().textAlign(TextAlign.Center)
+                Text(item.title).listItemStyle().fontColor($r('app.color.text_color')).textAlign(TextAlign.Center)
                   .onClick(() => {
                     // LogUtils.printInfo(item)
                     hilog.info(0x0000, 'testTag', '%{public}s', item)

@@ -12,8 +12,9 @@ export struct StudyList {
     context.resourceManager.getRawFileContent('routes.json')
       .then(value => {
         let textDecoder = util.TextDecoder.create('utf-8', { ignoreBOM: true })
-        let retStr = textDecoder.decodeWithStream(value, { stream: false })
-      }).catch((reason:ESObject) => {
+        // let retStr = textDecoder.decodeWithStream(value, { stream: false })
+        let resultStr = textDecoder.decodeToString(value, { stream: false })
+      }).catch((reason: ESObject) => {
       console.error(`reason=${reason}`)
     })
   }
@@ -23,7 +24,7 @@ export struct StudyList {
       List() {
         ForEach(RouteConstants.STUDY_LIST, (item: CustomType2) => {
           ListItem() {
-            Text(item.title).listItemStyle().textAlign(TextAlign.Center)
+            Text(item.title).listItemStyle().fontColor($r('app.color.text_color')).textAlign(TextAlign.Center)
               .onClick(() => {
                 // LogUtils.printInfo(item)
                 console.log(`${item.data}`)
@@ -48,5 +49,13 @@ export struct StudyList {
 
 @Styles
 function listItemStyle() {
-  .backgroundColor($r('app.color.color_background_list_item')).width('100%').padding({ left: 16, right: 16, top: 30, bottom: 30 }).borderRadius(16)
+  .backgroundColor($r('app.color.color_background_list_item'))
+  .width('100%')
+  .padding({
+    left: 16,
+    right: 16,
+    top: 30,
+    bottom: 30
+  })
+  .borderRadius(16)
 }

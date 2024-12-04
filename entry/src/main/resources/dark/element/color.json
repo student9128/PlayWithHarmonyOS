@@ -2,12 +2,12 @@
   "color": [
     {
       "name": "start_window_background",
-      "value": "#F8EDE3"
+      "value": "#000000"
     },
     {"name": "tab_background","value": "#ffffff"},
     {"name": "tab_active_color","value": "#FA7070"},
-    {"name": "tab_normal_color","value": "#32012F"},
-    {"name": "text_color","value": "#102C57"},
+    {"name": "tab_normal_color","value": "#D7A86E"},
+    {"name": "text_color","value": "#F3C623"},
     {"name": "white","value": "#ffffff"},
     {"name": "black","value": "#000000"},
     {"name": "gray","value": "#eeeeee"},
@@ -15,6 +15,6 @@
     {"name": "primary_color","value": "#FA7070"},
     {"name": "color_primary_opacity_30","value": "#4DFA7070"},
     {"name": "background_color","value": "#FFFFFF"},
-    {"name": "color_background_list_item","value": "#BF9742"}
+    {"name": "color_background_list_item","value": "#282A3A"}
   ]
 }

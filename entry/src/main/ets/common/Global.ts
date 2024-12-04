@@ -1,0 +1,1 @@
+export const playFont:string = 'custom_font';
