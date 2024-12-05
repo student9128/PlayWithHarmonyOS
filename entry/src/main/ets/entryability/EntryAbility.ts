@@ -5,6 +5,7 @@ import { font } from '@kit.ArkUI';
 import { playFont } from '../common/Global';
 import { Configuration } from '@ohos.app.ability.Configuration';
 import { ConfigurationConstant } from '@kit.AbilityKit';
+import { key_window_class } from '../common/Key';
 
 export default class EntryAbility extends UIAbility {
   onCreate(want, launchParam) {
@@ -65,8 +66,10 @@ export default class EntryAbility extends UIAbility {
           font.registerFont({
             familyName: playFont, familySrc: 'font/custom_font.ttf'
           })
+
         }
       })
+      AppStorage.setOrCreate(key_window_class, windowClass);
       // windowClass.setWindowBackgroundColor('#2196f3')
     })
 

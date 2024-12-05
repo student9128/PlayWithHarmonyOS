@@ -34,7 +34,10 @@
     "pages/basic_component/TogglePage",
     "pages/basic_component/WebPage",
     "pages/container_component/BadgePage",
-    "pages/DrawerLayoutPage"
+    "pages/DrawerLayoutPage",
+    "pages/feature_component/OrientationSwitchPage",
+    "pages/feature_component/GridItemReorderPage",
+    "pages/feature_component/ListItemReorderPage"
 
   ]
 }
