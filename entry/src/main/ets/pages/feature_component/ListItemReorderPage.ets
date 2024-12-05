@@ -15,7 +15,7 @@ struct ListItemReorderPage {
     }
     .padding({ left: 16, right: 16 })
     .width('100%')
-    .height(40)
+    .height(this.itemHeight)
     .backgroundColor($r('app.color.color_background_list_item'))
     .borderRadius(16)
     .justifyContent(FlexAlign.Start)
@@ -52,6 +52,7 @@ struct ListItemReorderPage {
   @State offsetY: number = 0
 
   @State lastOffsetY:number=0
+  itemHeight:number=40
   @Builder
   secondList() {
     List() {
@@ -64,7 +65,7 @@ struct ListItemReorderPage {
           // .margin({ top: 10, })
           .padding({ left: 16, right: 16 })
           .width('100%')
-          .height(40)
+          .height(this.itemHeight)
           .backgroundColor(this.dragItem==index?Color.Red:$r('app.color.color_background_list_item'))
           .borderRadius(16)
           .justifyContent(FlexAlign.SpaceBetween)
@@ -88,8 +89,8 @@ struct ListItemReorderPage {
           let isUp:boolean=(this.lastOffsetY-this.offsetY)<0
           this.lastOffsetY = this.offsetY;
           console.error(`哈哈====isUp=${isUp}=event.offsetY=${event.offsetY},走了,this.offsetY=${this.offsetY},dragRefOffset=${this.dragRefOffset}`)
-            if(Math.abs(this.offsetY)>=20){
-              let n = Math.ceil(Math.abs(this.offsetY)/40)
+            if(Math.abs(this.offsetY)>=(this.itemHeight/2)){
+              let n = Math.ceil(Math.abs(this.offsetY)/this.itemHeight)
              let targetIndex = isUp?this.dragItem+n:this.dragItem-n
               if(targetIndex<0){
                 targetIndex=0
@@ -103,8 +104,8 @@ struct ListItemReorderPage {
                 this.swapItems(this.dragItem, targetIndex)
                 this.dragItem = targetIndex
                 console.error(`哈哈====event.offsetY=${event.offsetY},this.offsetY=${this.offsetY}}`)
-                this.offsetY -= isUp ? n*40 : -40*n
-                this.dragRefOffset += isUp ? 40*n : -40*n
+                this.offsetY -= isUp ? n*this.itemHeight : this.itemHeight*n*(-1)
+                this.dragRefOffset += isUp ? this.itemHeight*n : this.itemHeight*n*(-1)
                 console.log(`哈哈===dragItem=${this.dragItem},targetIndex=${targetIndex},offsetY=${this.offsetY}}`)
               }else{
                 console.warn(`哈哈=====不交换==${targetIndex}`)
@@ -153,7 +154,7 @@ struct ListItemReorderPage {
           .margin({ top: 10, })
           .padding({ left: 16, right: 16 })
           .width('100%')
-          .height(40)
+          .height(this.itemHeight)
           .backgroundColor($r('app.color.color_background_list_item'))
           .borderRadius(16)
           .justifyContent(FlexAlign.Start)
