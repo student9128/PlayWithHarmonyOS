@@ -37,7 +37,9 @@
     "pages/DrawerLayoutPage",
     "pages/feature_component/OrientationSwitchPage",
     "pages/feature_component/GridItemReorderPage",
-    "pages/feature_component/ListItemReorderPage"
+    "pages/feature_component/ListItemReorderPage",
+    "pages/feature_component/TabPage",
+    "pages/feature_component/TextInputPage"
 
   ]
 }

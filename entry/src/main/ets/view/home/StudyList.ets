@@ -4,6 +4,7 @@ import { CustomType, CustomType2, RouteConstants } from '../../common/RouteConst
 import LogUtils from '../../utils/LogUtils'
 import common from '@ohos.app.ability.common'
 import util from '@ohos.util'
+import { showToast } from '../../utils/ToastUtils'
 
 @Component
 export struct StudyList {
@@ -27,6 +28,7 @@ export struct StudyList {
             Text(item.title).listItemStyle().fontColor($r('app.color.text_color')).textAlign(TextAlign.Center)
               .onClick(() => {
                 // LogUtils.printInfo(item)
+                showToast(`${item.title}`)
                 console.log(`${item.data}`)
                 router.pushUrl({
                   url: 'pages/ArkComponentPage',

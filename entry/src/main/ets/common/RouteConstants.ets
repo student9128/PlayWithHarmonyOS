@@ -51,7 +51,10 @@ export class RouteConstants {
   static readonly FEATURE_COMPONENT: Array<CustomType> =
     [{ "title": "OrientationSwitchPage", "page": "pages/feature_component/OrientationSwitchPage" },
       { 'title': 'GridItemReorderPage', 'page': 'pages/feature_component/GridItemReorderPage' },
-      { 'title': 'ListItemReorderPage', 'page': 'pages/feature_component/ListItemReorderPage' }]
+      { 'title': 'ListItemReorderPage', 'page': 'pages/feature_component/ListItemReorderPage' },
+      { 'title': 'TabPage', 'page': 'pages/feature_component/TabPage' },
+      { 'title': 'TextInputPage', 'page': "pages/feature_component/TextInputPage" },
+    ]
   static readonly STUDY_LIST: Array<CustomType2> =
     [{ "title": "BasicComponent", "data": RouteConstants.BASIC_COMPONENT },
       { "title": "ContainerComponent", "data": RouteConstants.CONTAINER_COMPONENT },

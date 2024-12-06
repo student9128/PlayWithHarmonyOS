@@ -61,7 +61,7 @@ struct Index {
           this.currentIndex = index
           this.showBack=index==1;
           this._title = index == 0 ? 'Study' : index == 1 ? 'Api' : 'Me'
-        }).barOverlap(true).barBackgroundBlurStyle(BlurStyle.Regular)
+        }).barOverlap(true).barBackgroundBlurStyle(BlurStyle.Regular).animationDuration(0)
       }
       // .title(this.NavigationTitle())
       .titleMode(NavigationTitleMode.Mini)
