@@ -31,8 +31,18 @@
             ]
           }
         ],
+        "metadata": [
+          {
+            "name": "ohos.ability.shortcuts",
+            "resource": "$profile:shortcuts_config"
+          }
+        ]
       }
     ],
-    "requestPermissions": [{"name": "ohos.permission.INTERNET"}]
+    "requestPermissions": [
+      {
+        "name": "ohos.permission.INTERNET"
+      }
+    ]
   }
 }

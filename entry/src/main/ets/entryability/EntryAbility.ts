@@ -52,11 +52,11 @@ export default class EntryAbility extends UIAbility {
       let color: string =this.context.config.colorMode==0 ? '#2D3250' : '#F8EDE3';
       let statusBarContentColor: string = this.context.config.colorMode == 0 ? '#BF9742' : '#8D493A';
       windowClass.setWindowSystemBarProperties({
-        statusBarColor: color, statusBarContentColor:statusBarContentColor
+        statusBarColor: '#00000000', statusBarContentColor:statusBarContentColor
       }, (err) => {
         console.log(`${JSON.stringify(err)}`);
       })
-      windowClass.setUIContent('pages/Index', (err) => {
+      windowClass.setUIContent('pages/SplashPage', (err) => {
         if (err.code == 0) {
           try {
             windowClass.setWindowBackgroundColor(color);
@@ -114,7 +114,7 @@ export default class EntryAbility extends UIAbility {
     let statusBarContentColor: string = newColorMode == 0 ? '#BF9742' : '#8D493A';
     if (this.mWindowClass != undefined) {
       this.mWindowClass.setWindowSystemBarProperties({
-        statusBarColor: color, statusBarContentColor: statusBarContentColor
+        statusBarColor: '#00000000', statusBarContentColor: statusBarContentColor
       }, (err) => {
         console.log(`${JSON.stringify(err)}`);
       });

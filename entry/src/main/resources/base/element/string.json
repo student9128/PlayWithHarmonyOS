@@ -11,6 +11,10 @@
     {
       "name": "EntryAbility_label",
       "value": "label"
+    },
+    {
+      "name": "shortcut",
+      "value": "测试shortcut"
     }
   ]
 }

@@ -54,6 +54,8 @@ export class RouteConstants {
       { 'title': 'ListItemReorderPage', 'page': 'pages/feature_component/ListItemReorderPage' },
       { 'title': 'TabPage', 'page': 'pages/feature_component/TabPage' },
       { 'title': 'TextInputPage', 'page': "pages/feature_component/TextInputPage" },
+      { 'title': 'SafeAreaPage', 'page': "pages/feature_component/SafeAreaPage" },
+      { 'title': 'DeviceInfoPage', 'page': "pages/feature_component/DeviceInfoPage" },
     ]
   static readonly STUDY_LIST: Array<CustomType2> =
     [{ "title": "BasicComponent", "data": RouteConstants.BASIC_COMPONENT },

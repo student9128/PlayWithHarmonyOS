@@ -9,3 +9,11 @@ export default class LogUtils {
     hilog.error(0x0000, 'testTag', '%{public}s', args)
   }
 }
+
+export function  printInfo(...args: ESObject[]) {
+  hilog.info(0x0000, 'testTag', '%{public}s', args)
+}
+
+export function printError(...args: ESObject[]) {
+  hilog.error(0x0000, 'testTag', '%{public}s', args)
+}

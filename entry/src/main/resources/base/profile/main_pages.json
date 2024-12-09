@@ -1,5 +1,6 @@
 {
   "src": [
+    "pages/SplashPage",
     "pages/Index",
     "pages/NotFoundPage",
     "pages/ArkComponentPage",
@@ -39,7 +40,9 @@
     "pages/feature_component/GridItemReorderPage",
     "pages/feature_component/ListItemReorderPage",
     "pages/feature_component/TabPage",
-    "pages/feature_component/TextInputPage"
+    "pages/feature_component/TextInputPage",
+    "pages/feature_component/SafeAreaPage",
+    "pages/feature_component/DeviceInfoPage"
 
   ]
 }
