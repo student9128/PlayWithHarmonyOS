@@ -69,6 +69,7 @@ struct Index {
       // .backButtonIcon($r('app.media.icon'))
       .hideTitleBar(true)
       .align(Alignment.Center)
+      .mode(NavigationMode.Stack)
 
       // .margin({left:-25})
     }

@@ -42,7 +42,9 @@
     "pages/feature_component/TabPage",
     "pages/feature_component/TextInputPage",
     "pages/feature_component/SafeAreaPage",
-    "pages/feature_component/DeviceInfoPage"
+    "pages/feature_component/DeviceInfoPage",
+    "pages/feature_component/BottomSheetPage",
+    "pages/feature_component/PopupPage"
 
   ]
 }

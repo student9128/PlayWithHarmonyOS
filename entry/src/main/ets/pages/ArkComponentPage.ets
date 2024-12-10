@@ -131,6 +131,7 @@ struct ArkComponentPage {
       }.height("100%").width("100%").padding({ left: 10, right: 10 })
     }.titleMode(NavigationTitleMode.Mini)
     .title(this._title)
+    .mode(NavigationMode.Stack)
   }
 }
 

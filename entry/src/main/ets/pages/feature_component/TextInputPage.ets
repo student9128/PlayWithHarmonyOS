@@ -26,6 +26,7 @@ struct TextInputPage {
   build() {
     Column() {
       TextInput()
+      Flex()
       Button('点击').onClick(() => {
         showToast('Hello', { alignment: Alignment.Center })
       })
@@ -35,6 +36,13 @@ struct TextInputPage {
       Button('点击').onClick(() => {
         showToastLong('Hello', { alignment: Alignment.Center })
       })
+      Column()
+        .width('80%').height(200).backgroundColor(Color.Gray)
+        .position({ x: 40, y: 120 })
+        .hoverEffect(HoverEffect.Scale)
+        .onHover((isHover?: boolean) => {
+          console.info('Scale isHover: ' + isHover as string)
+        })
       Web({
         src: 'https://www.baidu.com/',
         controller: this.controller
