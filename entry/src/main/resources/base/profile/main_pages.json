@@ -44,7 +44,7 @@
     "pages/feature_component/SafeAreaPage",
     "pages/feature_component/DeviceInfoPage",
     "pages/feature_component/BottomSheetPage",
-    "pages/feature_component/PopupPage"
-
+    "pages/feature_component/PopupPage",
+    "pages/feature_component/NavRoutePage"
   ]
 }

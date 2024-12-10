@@ -15,9 +15,10 @@ struct OrientationSwitchPage {
     if (!this.isPortrait) {
       let windowClass = AppStorage.get<window.Window>(key_window_class)
       windowClass?.setPreferredOrientation(window.Orientation.PORTRAIT)
+      this.isPortrait=true
       return true
     }
-    // return false
+    return false
   }
 
   build() {
