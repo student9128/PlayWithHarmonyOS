@@ -14,28 +14,29 @@ export class ScreenUtils {
   static scaleWidth = this.screenWidth / this.uiWidth;
   static scaleHeight = this.screenHeight / this.uiHeight;
   static scaledDensity = 1
-  static densityPixels=1
-  static orientation=0
-
+  static densityPixels = 1
+  static orientation = 0
+  static userAdaptSize = false
   /**
    * init
    * @param width ui design width
    * @param height ui design height
    */
-  public static init = (width: number = this.defaultWidth, height: number = this.defaultHeight) => {
+  public static init = (width: number = this.defaultWidth, height: number = this.defaultHeight,useAdaptPx:boolean=true) => {
     assertLarger(width, 0)
     assertLarger(height, 0)
     display.getAllDisplays((error, data) => {
+      this.userAdaptSize = !useAdaptPx
       this.screenWidth = data[0].width;
       this.screenHeight = data[0].height;
       this.scaledDensity = data[0].scaledDensity
-      this.densityPixels=data[0].densityPixels
+      this.densityPixels = data[0].densityPixels
       this.orientation = data[0].orientation
       this.uiWidth = width;
       this.uiHeight = height;
       this.scaleWidth = this.screenWidth / this.uiWidth;
       this.scaleHeight = this.screenHeight / this.uiHeight;
-      console.log(`scaleWidth=${this.scaleWidth},scaleHeight=${this.scaleHeight}`)
+      console.log(`scaleWidth=${this.scaleWidth},scaleHeight=${this.scaleHeight},${this.screenWidth},${this.screenHeight},${JSON.stringify(data)}`)
     });
     console.log(`scaleWidth=${this.scaleWidth},scaleHeight=${this.scaleHeight}`)
   }
@@ -47,38 +48,42 @@ export class ScreenUtils {
  * @param userAdaptSize
  * @returns
  */
-export function wSize(num: number, userAdaptSize: boolean = true) {
-  if (userAdaptSize) {
+export function wSize(num: number) {
+  if (ScreenUtils.userAdaptSize) {
     assertLarger(ScreenUtils.scaleWidth, 0)
-    return num * ScreenUtils.scaleWidth
+    return `${num * ScreenUtils.scaleWidth}px`
   } else {
     return num
   }
 }
+
 /**
  * vertical size
  * @param num
  * @param userAdaptSize
  * @returns
  */
-export function hSize(num: number, userAdaptSize: boolean = true) {
-  if (userAdaptSize) {
-    assertLarger(ScreenUtils.screenHeight, 0)
-    return num * ScreenUtils.screenHeight
+export function hSize(num: number) {
+  if (ScreenUtils.userAdaptSize) {
+    assertLarger(ScreenUtils.scaleHeight, 0)
+    return `${num * ScreenUtils.scaleHeight}px`
   } else {
     return num
   }
 }
-export function fontSize(num:number){
+
+export function fontSize(num: number) {
   return num
 }
 
 export const scaleDensity = () => ScreenUtils.scaledDensity
+
 export const densityPixels = () => ScreenUtils.densityPixels
+
 export const orientation = () => ScreenUtils.orientation
 
 export function aSize(num: number, type: string = 'vp') {
-  if (type != 'vp'&&type != 'px' && type != 'lpx') {
+  if (type != 'vp' && type != 'px' && type != 'lpx') {
     throw Error("the type is not supported")
   }
   return `${num}${type}`

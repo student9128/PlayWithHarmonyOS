@@ -6,6 +6,8 @@ import { playFont } from '../common/Global';
 import { Configuration } from '@ohos.app.ability.Configuration';
 import { ConfigurationConstant } from '@kit.AbilityKit';
 import { key_window_class } from '../common/Key';
+import { connection } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 export default class EntryAbility extends UIAbility {
   onCreate(want, launchParam) {
@@ -70,6 +72,43 @@ export default class EntryAbility extends UIAbility {
         }
       })
       AppStorage.setOrCreate(key_window_class, windowClass);
+      connection.getDefaultNet((err: BusinessError, data:connection.NetHandle) => {
+        console.log(`getDefaultNet=====${JSON.stringify(err)}`);
+        console.log(`getDefaultNet======data=${JSON.stringify(data)}`);
+        if (data) {
+        }
+      })
+      let netSpecifier: connection.NetSpecifier = {
+        netCapabilities: {
+          // 假设当前默认网络是Wi-Fi，需要创建蜂窝网络连接，可指定网络类型为蜂窝网
+          bearerTypes: [connection.NetBearType.BEARER_CELLULAR,connection.NetBearType.BEARER_WIFI,connection.NetBearType.BEARER_ETHERNET,],
+          // 指定网络能力为Internet
+          networkCap: [connection.NetCap.NET_CAPABILITY_INTERNET]
+        },
+      };
+      let conn = connection.createNetConnection(netSpecifier, 2000);
+      conn.register((err: BusinessError, data: void) => {
+        console.log(`net work = ${JSON.stringify(err)}`);
+      });
+
+      // 订阅事件，如果当前指定网络可用，通过on_netAvailable通知用户
+      conn.on('netAvailable', ((data: connection.NetHandle) => {
+        console.log("net is available, netId is " + data.netId);
+      }));
+
+      // 订阅事件，如果当前指定网络不可用，通过on_netUnavailable通知用户
+      conn.on('netUnavailable', ((data: void) => {
+        console.log("net is unavailable, data is " + JSON.stringify(data));
+      }));
+      conn.on('netCapabilitiesChange', (data: connection.NetCapabilityInfo) => {
+        console.info("Succeeded to get data: " + JSON.stringify(data));
+      });
+      conn.on('netConnectionPropertiesChange', (data: connection.NetConnectionPropertyInfo) => {
+        console.info("Succeeded to get data: " + JSON.stringify(data));
+      });
+      conn.on('netLost', (data: connection.NetHandle) => {
+        console.info("Succeeded to get data: " + JSON.stringify(data));
+      });
       // windowClass.setWindowBackgroundColor('#2196f3')
     })
 
