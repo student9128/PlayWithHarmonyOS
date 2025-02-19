@@ -1,0 +1,19 @@
+{
+  "routerMap": [
+    {
+      "name": "apiHomePage",
+      "pageSourceFile": "src/main/ets/pages/demo/HomePage.ets",
+      "buildFunction": "HomePageBuilder"
+    },
+    {
+      "name": "apiHarmonyOSDevPage",
+      "pageSourceFile": "src/main/ets/pages/demo/HarmonyOSDevPage.ets",
+      "buildFunction": "HarmonyOSDevPageBuilder"
+    },
+    {
+      "name": "apiToolPage",
+      "pageSourceFile": "src/main/ets/pages/demo/ToolPage.ets",
+      "buildFunction": "ToolPageBuilder"
+    }
+  ]
+}
