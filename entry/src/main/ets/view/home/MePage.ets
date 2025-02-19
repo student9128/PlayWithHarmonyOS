@@ -1,7 +1,7 @@
 import { photoAccessHelper } from "@kit.MediaLibraryKit"
 import { BusinessError } from "@kit.BasicServicesKit";
 import { playFont } from "../../common/Global";
-import { PlayFontStyle } from "../../common/FontStyle";
+import { PlayFixedFontStyle, PlayFontStyle } from "../../common/FontStyle";
 
 @Component
 export struct MePage {
@@ -34,6 +34,7 @@ export struct MePage {
       Text('12345').fontFamily(playFont)
       Text('12345').fontColor($r('app.color.text_color'))
       Text('12345').attributeModifier(new PlayFontStyle()).fontColor('#2196f3')
+      Text('12345你好').attributeModifier(new PlayFixedFontStyle()).fontColor('#F7418F')
       Grid() {
         ForEach(this.imgData, (item: string) => {
           GridItem() {
