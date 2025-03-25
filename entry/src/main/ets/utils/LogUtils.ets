@@ -17,3 +17,7 @@ export function  printInfo(...args: ESObject[]) {
 export function printError(...args: ESObject[]) {
   hilog.error(0x0000, 'testTag', '%{public}s', args)
 }
+
+export function printFatal(...args: ESObject[]) {
+  hilog.fatal(0x0000, 'testTag', '%{public}s', args)
+}

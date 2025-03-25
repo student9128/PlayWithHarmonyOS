@@ -17,3 +17,9 @@ export class PageCustomTheme implements CustomTheme{
   }
 
 }
+export class PlayColor{
+   public backgroundColor(){
+    return $r('app.color.color_background_list_item')
+  }
+}
+export const colorPrimary=()=>$r('app.color.primary_color')

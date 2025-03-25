@@ -12,6 +12,9 @@
   "dynamicDependencies": {},
   "dependencies": {
     "@ohos/axios": "^2.2.0",
-    "@smarthane/drawer-layout": "^1.0.4"
+    "@smarthane/drawer-layout": "^1.0.4",
+    "@ohos/pulltorefresh": "^2.1.2",
+    "@tencent/mmkv": "^2.1.0",
+    "@ohos/mpchart": "^3.0.21"
   }
 }

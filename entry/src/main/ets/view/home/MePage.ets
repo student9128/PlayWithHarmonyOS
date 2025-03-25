@@ -1,11 +1,16 @@
 import { photoAccessHelper } from "@kit.MediaLibraryKit"
 import { BusinessError } from "@kit.BasicServicesKit";
 import { playFont } from "../../common/Global";
-import { PlayFixedFontStyle, PlayFontStyle } from "../../common/FontStyle";
+import { HelloModifier, PlayFixedFontStyle, PlayFontStyle } from "../../common/FontStyle";
+import { TextModifier, UIUtils } from "@kit.ArkUI";
+import { colorPrimary, PlayColor } from "../../common/Theme";
+import { httpPost } from "../../http/HttpUtils";
+import LogUtils from "../../utils/LogUtils";
 
-@Component
+@ComponentV2
 export struct MePage {
-  @State imgData: string[] = [];
+  @Local imgData: string[] = [];
+  @Local fontStyle : TextAttribute = UIUtils.makeObserved(new HelloModifier().fontSize(30))
 
   getImage() {
     try {
@@ -35,6 +40,18 @@ export struct MePage {
       Text('12345').fontColor($r('app.color.text_color'))
       Text('12345').attributeModifier(new PlayFontStyle()).fontColor('#2196f3')
       Text('12345你好').attributeModifier(new PlayFixedFontStyle()).fontColor('#F7418F')
+      Text('可变自定义字体属性123333').attributeModifier(this.fontStyle as HelloModifier)
+      Button('修改字体颜色').onClick(()=>{
+        (this.fontStyle as HelloModifier).setFontColor()
+      })
+      Text('自定义').fontColor(colorPrimary())
+      Text('自定义').fontColor(new PlayColor().backgroundColor())
+      Button('调用接口').onClick(()=>{
+        let url = 'https://www.wanandroid.com/user/login'
+        httpPost(url,{"username": "test01", "password": "123456"}).then((value:ESObject)=>{
+          LogUtils.printInfo(`response=${JSON.stringify(value)}`)
+        })
+      })
       Grid() {
         ForEach(this.imgData, (item: string) => {
           GridItem() {

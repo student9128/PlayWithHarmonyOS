@@ -1,4 +1,4 @@
-import { TextModifier } from '@ohos.arkui.modifier';
+import { TextModifier,CommonModifier } from '@ohos.arkui.modifier';
 import { playFont } from './Global';
 
 export class PlayFontStyle implements AttributeModifier<TextModifier>{
@@ -14,5 +14,15 @@ export class PlayFixedFontStyle implements AttributeModifier<TextModifier>{
       .minFontScale(1.0)
       .maxFontScale(1.0)
       .fontWeight(500)
+  }
+}
+
+export class HelloModifier extends TextModifier {
+  applyNormalAttribute(instance: TextModifier): void {
+    super.applyNormalAttribute?.(instance)
+    instance.fontFamily(playFont)
+  }
+  setFontColor(){
+    this.fontColor(Color.Red)
   }
 }
