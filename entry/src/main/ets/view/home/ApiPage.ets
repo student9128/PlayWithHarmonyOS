@@ -15,7 +15,7 @@ export struct ApiPage {
     display.getAllDisplays((err, data) => {
       let screenWidth: number = data[0].width
       let screenHeight: number = data[0].height
-      console.log('width = ' + screenWidth + 'height = ' + screenHeight)
+      console.log('11width = ' + screenWidth + 'height = ' + screenHeight)
     })
   }
 

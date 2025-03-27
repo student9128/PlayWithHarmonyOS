@@ -46,7 +46,7 @@ struct TabPage {
       if (index == 0 && tabIndex > 0) {
         TabContent() {
           Column() {
-            Text(item)
+            Text(`${tabIndex}=${item}`)
           }
         }
         .tabBar(item).gesture(PanGesture(new PanGestureOptions({ direction: PanDirection.Right })).onActionStart(e => {
@@ -57,7 +57,7 @@ struct TabPage {
         if (index == this.subList.length - 1 && tabIndex!=this.tabList.length-1) {
           TabContent() {
             Column() {
-              Text(item)
+              Text(`${tabIndex}=${item}`)
             }
           }
           .tabBar(item).gesture(PanGesture(new PanGestureOptions({ direction: PanDirection.Left })).onActionStart(e => {
@@ -67,7 +67,7 @@ struct TabPage {
         } else {
         TabContent() {
           Column() {
-            Text(item)
+            Text(`${tabIndex}=${item}`)
           }
         }
         .tabBar(item)

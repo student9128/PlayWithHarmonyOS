@@ -5,6 +5,8 @@ import LogUtils from '../../utils/LogUtils'
 import common from '@ohos.app.ability.common'
 import util from '@ohos.util'
 import { showToast } from '../../utils/ToastUtils'
+import { window } from '@kit.ArkUI'
+import { key_window_class } from '../../common/Key'
 
 @Component
 export struct StudyList {
@@ -18,6 +20,7 @@ export struct StudyList {
       }).catch((reason: ESObject) => {
       console.error(`reason=${reason}`)
     })
+
   }
 
   build() {
@@ -45,7 +48,16 @@ export struct StudyList {
         })
       }.listDirection(Axis.Vertical)
       .edgeEffect(EdgeEffect.Spring)
-    }.height("100%").width("100%").padding({ left: 10, right: 10 })
+    }.height("100%").width("100%").padding({ left: 10, right: 10 }).backgroundColor(Color.Red)
+  }
+  // page A
+  pageTransition() {
+    // 定义页面进入时的效果，从左侧滑入，时长为1200ms，无论页面栈发生push还是pop操作均可生效
+    PageTransitionEnter({ type: RouteType.None, duration: 1200 })
+      .slide(SlideEffect.Left)
+    // 定义页面退出时的效果，向左侧滑出，时长为1000ms，无论页面栈发生push还是pop操作均可生效
+    PageTransitionExit({ type: RouteType.None, duration: 1000 })
+      .slide(SlideEffect.Left)
   }
 }
 

@@ -1,23 +1,48 @@
-import { router, ThemeControl } from '@kit.ArkUI'
-import { url } from '@kit.ArkTS'
+import { display, router, ThemeControl, window } from '@kit.ArkUI'
 import { ScreenUtils } from '../utils/ScreenUtils';
 import { GreenColors, PageCustomTheme } from '../common/Theme';
+import { key_window_class } from '../common/Key';
 
 @Entry
-@Component
+@ComponentV2
 struct SplashPage {
-  @State timeCount: number = 5;
-  @State interval: number | undefined = undefined
-
+  @Local timeCount: number = 5;
+  @Local interval: number | undefined = undefined
+  @Local pageOpacity:number = 1
   aboutToAppear(): void {
     ThemeControl.setDefaultTheme(new PageCustomTheme(new GreenColors()))
-    ScreenUtils.init(750,1334)
+    ScreenUtils.init(375,812)
+    display.getAllDisplays((err, data) => {
+      let screenWidth: number = data[0].width
+      let screenHeight: number = data[0].height
+      console.log('init width = ' + screenWidth + 'height = ' + screenHeight)
+    })
+    let windowClass = AppStorage.get<window.Window>(key_window_class)
+    // windowClass?.setImmersiveModeEnabledState(true)
     this.interval = setInterval(() => {
       this.timeCount--;
+      if(this.timeCount==1){
+        this.getUIContext()?.animateTo({duration:1200,curve:Curve.ExtremeDeceleration},()=>{
+          this.pageOpacity=0.5
+        })
+      }
       if (this.timeCount == 0) {
+        // windowClass?.setImmersiveModeEnabledState(false)
+        // windowClass?.setWindowLayoutFullScreen(false)
         router.replaceUrl({ url: 'pages/Index' })
+
       }
     }, 1000)
+  }
+  onPageShow(): void {
+    display.getAllDisplays((err, data) => {
+      let screenWidth: number = data[0].width
+      let screenHeight: number = data[0].height
+      console.log('onpageshow width = ' + screenWidth + 'height = ' + screenHeight)
+    })
+  }
+  onDidBuild(): void {
+    console.log('did build')
   }
 
   build() {
@@ -47,6 +72,6 @@ struct SplashPage {
           clearInterval(this.interval)
           router.replaceUrl({ url: 'pages/Index' })
         })
-    }.width('100%').height('100%')
+    }.width('100%').height('100%').opacity(this.pageOpacity)
   }
 }

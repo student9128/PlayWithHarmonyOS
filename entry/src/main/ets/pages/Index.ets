@@ -1,6 +1,8 @@
 import { ApiPage } from '../view/home/ApiPage'
 import { MePage } from '../view/home/MePage'
 import { StudyList } from '../view/home/StudyList'
+import { window } from '@kit.ArkUI'
+import { key_window_class } from '../common/Key'
 
 @Entry
 @Component
@@ -12,6 +14,21 @@ struct Index {
   @State _title: string = "Study";
   @State showBack: boolean = false;
   private tabController: TabsController = new TabsController()
+  @State windowClass:window.Window | undefined = undefined
+  aboutToAppear(): void {
+    this.windowClass = AppStorage.get<window.Window>(key_window_class)
+  }
+  aboutToDisappear(): void {
+    console.log('zou l me disa')
+
+  }
+  onPageShow(): void {
+
+  }
+  onPageHide(): void {
+    console.log('zou l me')
+    this.windowClass?.setImmersiveModeEnabledState(false)
+  }
 
   @Builder
   TabBuilder(index: number, name: string) {
@@ -40,7 +57,7 @@ struct Index {
               StudyList()
 
             }.width('100%').height('100%')
-          }.tabBar(this.TabBuilder(0, 'Study'))
+          }.tabBar(this.TabBuilder(0, 'Study')).backgroundColor(Color.Green).expandSafeArea([SafeAreaType.SYSTEM],[SafeAreaEdge.TOP])
           // .backgroundColor($r('app.color.background_color'))
 
           TabContent() {
@@ -61,7 +78,17 @@ struct Index {
           this.currentIndex = index
           this.showBack=index==1;
           this._title = index == 0 ? 'Study' : index == 1 ? 'Api' : 'Me'
-        }).barOverlap(true).barBackgroundBlurStyle(BlurStyle.Regular).animationDuration(0)
+          //   if(this.windowClass!=undefined){
+          //     if (index == 0) {
+          //       this.windowClass?.setImmersiveModeEnabledState(true)
+          //     } else {
+          //       this.windowClass?.setImmersiveModeEnabledState(false)
+          //
+          //     }
+          // }else{
+          //
+          // }
+        }).barOverlap(true).barBackgroundBlurStyle(BlurStyle.Regular).animationDuration(0).expandSafeArea([SafeAreaType.SYSTEM],[SafeAreaEdge.TOP])
       }
       // .title(this.NavigationTitle())
       .titleMode(NavigationTitleMode.Mini)
@@ -70,7 +97,6 @@ struct Index {
       .hideTitleBar(true)
       .align(Alignment.Center)
       .mode(NavigationMode.Stack)
-
       // .margin({left:-25})
     }
   }

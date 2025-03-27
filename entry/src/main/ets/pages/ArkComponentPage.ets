@@ -133,6 +133,7 @@ struct ArkComponentPage {
     .title(this._title)
     .mode(NavigationMode.Stack)
   }
+
 }
 
 @Styles
