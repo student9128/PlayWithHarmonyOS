@@ -3,6 +3,10 @@
     {
       "name": "app_name",
       "value": "PlayWithHarmonyOS"
+    },
+    {
+      "name": "app_name_dev",
+      "value": "PlayDev"
     }
   ]
 }

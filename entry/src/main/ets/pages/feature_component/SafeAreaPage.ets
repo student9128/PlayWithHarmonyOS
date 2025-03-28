@@ -19,7 +19,7 @@ struct SafeAreaPage {
     Column() {
       Image('https://gips2.baidu.com/it/u=1651586290,17201034&fm=3028&app=3028&f=JPEG&fmt=auto&q=100&size=f600_800')
         .width('100%')
-        .height('30%').expandSafeArea([SafeAreaType.SYSTEM],[SafeAreaEdge.TOP])
+        .aspectRatio(4/3).expandSafeArea([SafeAreaType.SYSTEM],[SafeAreaEdge.TOP])
     }.width('100%').height('100%').clip(false)
   }
 }
