@@ -45,6 +45,8 @@
     "pages/feature_component/DeviceInfoPage",
     "pages/feature_component/BottomSheetPage",
     "pages/feature_component/PopupPage",
-    "pages/feature_component/NavRoutePage"
+    "pages/feature_component/NavRoutePage",
+    "pages/feature_component/SystemTabsPage",
+    "pages/feature_component/TabPagerScaffoldPage"
   ]
 }

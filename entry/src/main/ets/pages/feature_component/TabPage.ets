@@ -1,105 +1,66 @@
-import { showToast } from '../../utils/ToastUtils';
+import router from '@ohos.router';
 import { CustomTitleBar } from '../../widgets/CustomTitleBar'
+
+interface TabDemoItem {
+  title: string
+  desc: string
+  page: string
+}
 
 @Entry
 @Component
 struct TabPage {
-  private controller: TabsController = new TabsController();
-  @State currentSelectedIndex: number = 0;
+  private demoList: TabDemoItem[] = [
+    {
+      title: '系统 Tabs 实现',
+      desc: 'ArkUI 自带 Tabs + TabContent，父子嵌套与手势切换父 Tab',
+      page: 'pages/feature_component/SystemTabsPage'
+    },
+    {
+      title: 'TabPagerScaffold 实现',
+      desc: 'widgets/TabPagerScaffold：KTabBar + Swiper 二层嵌套，支持受控切换',
+      page: 'pages/feature_component/TabPagerScaffoldPage'
+    },
+  ]
 
+  // 根节点必须是容器组件，自定义组件 CustomTitleBar 不能直接作为 @Entry 的根
   build() {
     RelativeContainer() {
       CustomTitleBar({ title: 'TabPage' }) {
-        Tabs({ controller: this.controller }) {
-          this.parentTabBuilder()
-        }.animationDuration(300).onTabBarClick(index => {
-          showToast(`${index}`)
-          this.currentSelectedIndex = index
-
-        })
-
+        List() {
+          ForEach(this.demoList, (item: TabDemoItem) => {
+            ListItem() {
+              Column() {
+                Text(item.title)
+                  .fontSize(18)
+                  .fontWeight(FontWeight.Bold)
+                  .fontColor($r('app.color.text_color'))
+                Text(item.desc)
+                  .fontSize(13)
+                  .fontColor($r('app.color.text_color'))
+                  .margin({ top: 6 })
+              }
+              .alignItems(HorizontalAlign.Start)
+              .width('100%')
+              .padding({ left: 16, right: 16, top: 18, bottom: 18 })
+              .borderRadius(16)
+              .backgroundColor($r('app.color.color_background_list_item'))
+              .onClick(() => {
+                router.pushUrl({ url: item.page }, (err) => {
+                  if (err) {
+                    console.error(`pushUrl failed, code is ${err.code}, message is ${err.message}`);
+                    return
+                  }
+                  console.info('pushUrl success');
+                })
+              })
+            }.margin({ top: 10 })
+          }, (item: TabDemoItem) => item.page)
+        }
+        .width('100%').height('100%')
+        .padding({ left: 10, right: 10 })
       }
     }
+    .width('100%').height('100%')
   }
-
-
-
-  subList: string[] = ['subTab1', 'subTab2', 'subTab3-----test']
-  tabList:string[]=['Tab1','Tab2','Tab3']
-
-  @Builder
-  parentTabBuilder(){
-    ForEach(this.tabList,(item:string,index:number)=>{
-      TabContent() {
-        Column() {
-          Tabs() {
-            this.newLocalBuilder(index)
-          }.animationDuration(index)
-        }
-      }.tabBar(customTab({title:`${item}`,isSelected:this.currentSelectedIndex==index}))
-    })
-  }
-
-  @Builder
-  newLocalBuilder(tabIndex: number) {
-    ForEach(this.subList, (item: string, index: number) => {
-      if (index == 0 && tabIndex > 0) {
-        TabContent() {
-          Column() {
-            Text(`${tabIndex}=${item}`)
-          }
-        }
-        .tabBar(item).gesture(PanGesture(new PanGestureOptions({ direction: PanDirection.Right })).onActionStart(e => {
-          this.controller.changeIndex(tabIndex-1)
-          this.currentSelectedIndex=tabIndex-1
-        }))
-      } else
-        if (index == this.subList.length - 1 && tabIndex!=this.tabList.length-1) {
-          TabContent() {
-            Column() {
-              Text(`${tabIndex}=${item}`)
-            }
-          }
-          .tabBar(item).gesture(PanGesture(new PanGestureOptions({ direction: PanDirection.Left })).onActionStart(e => {
-            this.controller.changeIndex(tabIndex+1)
-            this.currentSelectedIndex=(tabIndex+1)
-          }))
-        } else {
-        TabContent() {
-          Column() {
-            Text(`${tabIndex}=${item}`)
-          }
-        }
-        .tabBar(item)
-      }
-    }, (item: string) => item)
-
-  }
-}
-class TabParams{
-  title:string=''
-  isSelected:boolean=false
-}
-/**
- * 必须使用引用传值，否无法刷新 UI
- * 使用 ComponentV2配合 ObservedV2和 Trace ，不支持基本数据类型
- * https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/arkts-builder-V5#builder函数联合v2装饰器使用
- * @Builder只接受一个参数，当传入一个参数的时候，通过对象字面量的形式传递，值的改变会引起UI的刷新。
- * @param title
- * @param isSelected
- */
-@Builder
-function customTab(param:TabParams) {
-  Text(param.title)
-    .fontColor(param.isSelected?Color.Orange:Color.Black)
-    .borderColor(param.isSelected ? Color.Orange : Color.Gray)
-    .borderRadius(10)
-    .borderWidth(1)
-    .padding({
-      left: 10,
-      right: 10,
-      top: 3,
-      bottom: 3
-    })
-    .backgroundColor(param.isSelected ? Color.Transparent : Color.Gray)
 }
