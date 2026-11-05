@@ -21,6 +21,11 @@ struct TabPage {
       desc: 'widgets/TabPagerScaffold：KTabBar + Swiper 二层嵌套，支持受控切换',
       page: 'pages/feature_component/TabPagerScaffoldPage'
     },
+    {
+      title: 'ATabBar 自定义 indicator',
+      desc: 'widgets/ATabBar：上划线 / 下划线 / 圆角背景 / Canvas 自定义 indicator，可整体显隐',
+      page: 'pages/feature_component/ATabBarPage'
+    },
   ]
 
   // 根节点必须是容器组件，自定义组件 CustomTitleBar 不能直接作为 @Entry 的根

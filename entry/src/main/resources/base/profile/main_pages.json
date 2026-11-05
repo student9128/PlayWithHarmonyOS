@@ -47,6 +47,7 @@
     "pages/feature_component/PopupPage",
     "pages/feature_component/NavRoutePage",
     "pages/feature_component/SystemTabsPage",
-    "pages/feature_component/TabPagerScaffoldPage"
+    "pages/feature_component/TabPagerScaffoldPage",
+    "pages/feature_component/ATabBarPage"
   ]
 }

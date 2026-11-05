@@ -59,6 +59,7 @@ export class RouteConstants {
       { 'title': 'BottomSheetPage', 'page': "pages/feature_component/BottomSheetPage" },
       { 'title': 'PopupPage', 'page': "pages/feature_component/PopupPage" },
       { 'title': 'NavRoutePage', 'page': "pages/feature_component/NavRoutePage" },
+      { 'title': 'ATabBarPage', 'page': "pages/feature_component/ATabBarPage" },
     ]
   static readonly STUDY_LIST: Array<CustomType2> =
     [{ "title": "BasicComponent", "data": RouteConstants.BASIC_COMPONENT },
