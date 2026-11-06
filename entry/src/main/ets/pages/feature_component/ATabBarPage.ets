@@ -10,7 +10,8 @@ struct ATabBarPage {
   @Local customIndex: number = 0
   @Local showIndicator: boolean = true
   @Local centerMode: ATabBarCenterMode = ATabBarCenterMode.Screen
-  private tabs: string[] = ['推荐', '热点', '财经', '科技', '体育', '娱乐', '汽车', '房产']
+  @Local indicatorAnimation: boolean = true
+  private tabs: string[] = ['推荐', '热点', '财经', '科技新闻', '体育', '娱乐', '汽车', '房产']
 
   build() {
     RelativeContainer() {
@@ -33,6 +34,13 @@ struct ATabBarPage {
                   ATabBarCenterMode.VisibleArea : ATabBarCenterMode.Screen
               })
 
+            Button(this.indicatorAnimation ? 'indicator 动画：开（点击关闭）' : 'indicator 动画：关（点击开启）')
+              .fontSize(14)
+              .margin({ top: 10 })
+              .onClick(() => {
+                this.indicatorAnimation = !this.indicatorAnimation
+              })
+
             this.sectionTitle('1. 上划线 TopLine', 'indicatorShape = TopLine，可设粗细 / 圆角 / 距边距离')
             ATabBar({
               tabList: this.tabs,
@@ -40,6 +48,7 @@ struct ATabBarPage {
               useOuterIndex: true,
               showIndicator: this.showIndicator,
               centerMode: this.centerMode,
+              enableIndicatorAnimation: this.indicatorAnimation,
               indicatorShape: ATabBarIndicatorShape.TopLine,
               indicatorColor: '#FA7070',
               indicatorHeight: 3,
@@ -58,6 +67,7 @@ struct ATabBarPage {
               useOuterIndex: true,
               showIndicator: this.showIndicator,
               centerMode: this.centerMode,
+              enableIndicatorAnimation: this.indicatorAnimation,
               indicatorShape: ATabBarIndicatorShape.BottomLine,
               indicatorColor: '#4A90E2',
               indicatorWidth: 20,
@@ -76,10 +86,12 @@ struct ATabBarPage {
               useOuterIndex: true,
               showIndicator: this.showIndicator,
               centerMode: this.centerMode,
+              enableIndicatorAnimation: this.indicatorAnimation,
               indicatorShape: ATabBarIndicatorShape.RoundedRect,
               indicatorColor: '#FA7070',
               indicatorHeight: 30,
               indicatorRadius: 15,
+              tabSpacing:4,
               indicatorHorizontalPadding: 14,
               tabHeight: 46,
               selectedFontColor: Color.White,
@@ -95,6 +107,7 @@ struct ATabBarPage {
               useOuterIndex: true,
               showIndicator: this.showIndicator,
               centerMode: this.centerMode,
+              enableIndicatorAnimation: this.indicatorAnimation,
               indicatorShape: ATabBarIndicatorShape.Custom,
               tabHeight: 46,
               selectedFontColor: '#8E44AD',
@@ -173,7 +186,7 @@ struct ATabBarCanvasIndicator {
     Canvas(this.context)
       .width(24)
       .height(10)
-      .offset({ x: 0, y: 14 })
+      .margin({ bottom: 4 })
       .onReady(() => {
         this.draw()
       })
