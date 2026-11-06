@@ -60,6 +60,8 @@ export class RouteConstants {
       { 'title': 'PopupPage', 'page': "pages/feature_component/PopupPage" },
       { 'title': 'NavRoutePage', 'page': "pages/feature_component/NavRoutePage" },
       { 'title': 'ATabBarPage', 'page': "pages/feature_component/ATabBarPage" },
+      { 'title': 'ATabBarPagerPage', 'page': "pages/feature_component/ATabBarPagerPage" },
+      { 'title': 'BTabBarPage', 'page': "pages/feature_component/BTabBarPage" },
     ]
   static readonly STUDY_LIST: Array<CustomType2> =
     [{ "title": "BasicComponent", "data": RouteConstants.BASIC_COMPONENT },

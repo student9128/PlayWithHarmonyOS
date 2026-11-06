@@ -57,6 +57,8 @@ export struct ATabBar {
   @Param indicatorHorizontalPadding: number = 12
   // indicator 是否滑动过渡到选中项，默认开启；false 为瞬间切换
   @Param enableIndicatorAnimation: boolean = true
+  // 侧滑跟手进度：浮点页索引（>=0 生效）；-1 表示未在侧滑。由 Swiper.onContentDidScroll 逐帧驱动
+  @Param swipeProgress: number = -1
   // 选中项滚动居中的基准，默认按屏幕居中
   @Param centerMode: ATabBarCenterMode = ATabBarCenterMode.Screen
 
@@ -104,6 +106,11 @@ export struct ATabBar {
 
   @Monitor('showIndicator', 'indicatorShape')
   onIndicatorStyleChanged(): void {
+    this.applyIndicator()
+  }
+
+  @Monitor('swipeProgress')
+  onSwipeProgressChanged(): void {
     this.applyIndicator()
   }
 
@@ -249,6 +256,10 @@ export struct ATabBar {
   }
 
   private indicatorDuration(): number {
+    // 跟手阶段必须关掉补间，否则每帧状态变化都会排队动画，indicator 会明显滞后于手指
+    if (this.swipeProgress >= 0) {
+      return 0
+    }
     return this.enableIndicatorAnimation ? 250 : 0
   }
 
@@ -260,7 +271,32 @@ export struct ATabBar {
       this.indicatorSpacing : this.tabHeight - this.indicatorHeight - this.indicatorSpacing
   }
 
-  /** 计算选中项的 indicator 位置；x / 宽度由 .animation() 自动补间到新值。 */
+  /** 整数页 index 对应的 indicator 左边界（内容坐标系）。 */
+  private indicatorXAt(index: number): number {
+    let itemX: number = 0
+    for (let i = 0; i < index; i++) {
+      itemX += this.itemWidth(i)
+    }
+    const itemW: number = this.itemWidth(index)
+    const w: number = this.indicatorWAt(index)
+    return itemX + (itemW - w) / 2
+  }
+
+  /** 整数页 index 对应的 indicator 宽度。 */
+  private indicatorWAt(index: number): number {
+    if (this.indicatorShape === ATabBarIndicatorShape.TopLine ||
+      this.indicatorShape === ATabBarIndicatorShape.BottomLine) {
+      const textW: number = this.scrollTitleWidths[index]
+      return this.indicatorWidth > 0 ? Math.min(this.indicatorWidth, textW) : textW
+    }
+    return this.itemWidth(index)
+  }
+
+  /**
+   * 计算 indicator 位置与宽度。
+   * 侧滑跟手时按浮点页索引在相邻两页之间线性插值，宽度也一起渐变（官方 Tabs indicator 的做法）；
+   * 非跟手时落在整数页，由 .animation() 补间过渡。
+   */
   private applyIndicator(): void {
     const index: number = this.currentIndex
     if (!this.showIndicator || this.indicatorShape === ATabBarIndicatorShape.None ||
@@ -268,21 +304,20 @@ export struct ATabBar {
       this.indicatorShown = false
       return
     }
-    let itemX: number = 0
-    for (let i = 0; i < index; i++) {
-      itemX += this.itemWidth(i)
+    const last: number = this.scrollTitleWidths.length - 1
+    const progress: number = this.swipeProgress
+    if (this.enableIndicatorAnimation && progress >= 0 && progress <= last) {
+      const from: number = Math.floor(progress)
+      const to: number = Math.min(from + 1, last)
+      const fraction: number = progress - from
+      const xFrom: number = this.indicatorXAt(from)
+      const wFrom: number = this.indicatorWAt(from)
+      this.indicatorX = xFrom + (this.indicatorXAt(to) - xFrom) * fraction
+      this.indicatorW = wFrom + (this.indicatorWAt(to) - wFrom) * fraction
+    } else {
+      this.indicatorX = this.indicatorXAt(index)
+      this.indicatorW = this.indicatorWAt(index)
     }
-    const itemW: number = this.itemWidth(index)
-    let x: number = itemX
-    let w: number = itemW
-    if (this.indicatorShape === ATabBarIndicatorShape.TopLine ||
-      this.indicatorShape === ATabBarIndicatorShape.BottomLine) {
-      const textW: number = this.scrollTitleWidths[index]
-      w = this.indicatorWidth > 0 ? Math.min(this.indicatorWidth, textW) : textW
-      x = itemX + (itemW - w) / 2
-    }
-    this.indicatorX = x
-    this.indicatorW = w
     this.indicatorShown = true
   }
 

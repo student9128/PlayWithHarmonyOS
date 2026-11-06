@@ -26,6 +26,16 @@ struct TabPage {
       desc: 'widgets/ATabBar：上划线 / 下划线 / 圆角背景 / Canvas 自定义 indicator，可整体显隐',
       page: 'pages/feature_component/ATabBarPage'
     },
+    {
+      title: 'ATabBar + TabPagerScaffold',
+      desc: 'ATabBar 作为 tabBar 插槽：点 tab 切页、手势滑内容页时 indicator 双向跟随',
+      page: 'pages/feature_component/ATabBarPagerPage'
+    },
+    {
+      title: 'BTabBar 背景内文字反色',
+      desc: '双层文字 + 裁剪窗口：红色背景内白字、背景外黑字，边界随侧滑逐帧移动',
+      page: 'pages/feature_component/BTabBarPage'
+    },
   ]
 
   // 根节点必须是容器组件，自定义组件 CustomTitleBar 不能直接作为 @Entry 的根

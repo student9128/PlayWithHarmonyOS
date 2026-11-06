@@ -29,9 +29,13 @@ export struct TabPagerScaffold {
 
   @Event onTabChange: (index: number) => void
   @Event onRetry: () => void
+  // 侧滑逐帧进度：浮点页索引（0→1 表示从第 0 页滑向第 1 页）；-1 表示本次滑动结束
+  @Event onSwipeProgress?: (floatIndex: number) => void
 
   @Local currentSelectedIndex: number = 0
   private swiperController: SwiperController = new SwiperController()
+  // 代码触发的切页（点 tab / controlledIndex）不走跟手，交给 ATabBar 自己的补间动画
+  private isProgrammaticChange: boolean = false
 
   aboutToAppear(): void {
     this.currentSelectedIndex = this.controlledIndex >= 0 ? this.controlledIndex : this.initialTabIndex
@@ -91,7 +95,24 @@ export struct TabPagerScaffold {
         }
         .index(this.currentSelectedIndex)
         .loop(false).indicator(false).duration(300).curve(Curve.Ease)
+        .onContentDidScroll((selectedIndex: number, index: number, position: number,
+          _mainAxisLength: number) => {
+          // 每帧对视窗内所有页都会回调，只取当前页那次。
+          // position 是当前页相对滑动起点的位移比例（左滑为负），selectedIndex - position 即浮点页索引，方向自适应。
+          if (this.isProgrammaticChange || index !== selectedIndex) {
+            return
+          }
+          const maxIndex: number = this.tabs.length - 1
+          const floatIndex: number = Math.max(0, Math.min(selectedIndex - position, maxIndex))
+          this.onSwipeProgress?.(floatIndex)
+        })
+        .onAnimationEnd(() => {
+          this.isProgrammaticChange = false
+          this.onSwipeProgress?.(-1)
+        })
         .onChange((index: number) => {
+          // 切页完成即退出程序化切页态：onAnimationEnd 万一没回调也不会让后续手势被误屏蔽
+          this.isProgrammaticChange = false
           if (this.currentSelectedIndex !== index) {
             this.currentSelectedIndex = index
             this.onTabChange(index)
@@ -106,6 +127,7 @@ export struct TabPagerScaffold {
 
   changeTab = (index: number) => {
     if (this.currentSelectedIndex !== index) {
+      this.isProgrammaticChange = true
       this.currentSelectedIndex = index
       this.swiperController.changeIndex(index)
       this.onTabChange(index)
@@ -118,6 +140,7 @@ export struct TabPagerScaffold {
     if (this.controlledIndex < 0 || this.controlledIndex === this.currentSelectedIndex) {
       return
     }
+    this.isProgrammaticChange = true
     this.currentSelectedIndex = this.controlledIndex
     this.swiperController.changeIndex(this.controlledIndex)
   }
