@@ -21,7 +21,7 @@
     {"name": "app_primary_container","value": "#4F378B"},
     {"name": "app_on_primary_container","value": "#EADDFF"},
     {"name": "app_surface","value": "#141218"},
-    {"name": "app_surface_variant","value": "#49454F"},
+    {"name": "app_surface_variant","value": "#1D1B20"},
     {"name": "app_on_surface","value": "#E6E0E9"},
     {"name": "app_on_surface_variant","value": "#CAC4D0"},
     {"name": "app_outline","value": "#938F99"},

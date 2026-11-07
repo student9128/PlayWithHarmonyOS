@@ -1,29 +1,14 @@
 {
   "routerMap": [
     {
-      "name": "ArkComponentPage",
-      "pageSourceFile": "src/main/ets/pages/ArkComponentPage.ets",
-      "buildFunction": "ArkComponentPageBuilder"
+      "name": "ATabBarPage",
+      "pageSourceFile": "src/main/ets/pages/feature_component/ATabBarPage.ets",
+      "buildFunction": "ATabBarPageBuilder"
     },
     {
-      "name": "DrawerLayoutPage",
-      "pageSourceFile": "src/main/ets/pages/DrawerLayoutPage.ets",
-      "buildFunction": "DrawerLayoutPageBuilder"
-    },
-    {
-      "name": "MediaComponent",
-      "pageSourceFile": "src/main/ets/pages/MediaComponent.ets",
-      "buildFunction": "MediaComponentBuilder"
-    },
-    {
-      "name": "NotFoundPage",
-      "pageSourceFile": "src/main/ets/pages/NotFoundPage.ets",
-      "buildFunction": "NotFoundPageBuilder"
-    },
-    {
-      "name": "BadgePage",
-      "pageSourceFile": "src/main/ets/pages/container_component/BadgePage.ets",
-      "buildFunction": "BadgePageBuilder"
+      "name": "ATabBarPagerPage",
+      "pageSourceFile": "src/main/ets/pages/feature_component/ATabBarPagerPage.ets",
+      "buildFunction": "ATabBarPagerPageBuilder"
     },
     {
       "name": "AlphabetIndexerPage",
@@ -31,9 +16,29 @@
       "buildFunction": "AlphabetIndexerPageBuilder"
     },
     {
+      "name": "ArkComponentPage",
+      "pageSourceFile": "src/main/ets/pages/ArkComponentPage.ets",
+      "buildFunction": "ArkComponentPageBuilder"
+    },
+    {
+      "name": "BTabBarPage",
+      "pageSourceFile": "src/main/ets/pages/feature_component/BTabBarPage.ets",
+      "buildFunction": "BTabBarPageBuilder"
+    },
+    {
+      "name": "BadgePage",
+      "pageSourceFile": "src/main/ets/pages/container_component/BadgePage.ets",
+      "buildFunction": "BadgePageBuilder"
+    },
+    {
       "name": "BlankPage",
       "pageSourceFile": "src/main/ets/pages/basic_component/BlankPage.ets",
       "buildFunction": "BlankPageBuilder"
+    },
+    {
+      "name": "BottomSheetPage",
+      "pageSourceFile": "src/main/ets/pages/feature_component/BottomSheetPage.ets",
+      "buildFunction": "BottomSheetPageBuilder"
     },
     {
       "name": "ButtonPage",
@@ -56,14 +61,29 @@
       "buildFunction": "DatePickerPageBuilder"
     },
     {
+      "name": "DeviceInfoPage",
+      "pageSourceFile": "src/main/ets/pages/feature_component/DeviceInfoPage.ets",
+      "buildFunction": "DeviceInfoPageBuilder"
+    },
+    {
       "name": "DividerPage",
       "pageSourceFile": "src/main/ets/pages/basic_component/DividerPage.ets",
       "buildFunction": "DividerPageBuilder"
     },
     {
+      "name": "DrawerLayoutPage",
+      "pageSourceFile": "src/main/ets/pages/DrawerLayoutPage.ets",
+      "buildFunction": "DrawerLayoutPageBuilder"
+    },
+    {
       "name": "GaugePage",
       "pageSourceFile": "src/main/ets/pages/basic_component/GaugePage.ets",
       "buildFunction": "GaugePageBuilder"
+    },
+    {
+      "name": "GridItemReorderPage",
+      "pageSourceFile": "src/main/ets/pages/feature_component/GridItemReorderPage.ets",
+      "buildFunction": "GridItemReorderPageBuilder"
     },
     {
       "name": "ImageAnimatorPage",
@@ -76,9 +96,19 @@
       "buildFunction": "ImagePageBuilder"
     },
     {
+      "name": "ListItemReorderPage",
+      "pageSourceFile": "src/main/ets/pages/feature_component/ListItemReorderPage.ets",
+      "buildFunction": "ListItemReorderPageBuilder"
+    },
+    {
       "name": "LoadingProgressPage",
       "pageSourceFile": "src/main/ets/pages/basic_component/LoadingProgressPage.ets",
       "buildFunction": "LoadingProgressPageBuilder"
+    },
+    {
+      "name": "MNavigationBarPage",
+      "pageSourceFile": "src/main/ets/pages/feature_component/MNavigationBarPage.ets",
+      "buildFunction": "MNavigationBarPageBuilder"
     },
     {
       "name": "MarqueePage",
@@ -86,14 +116,39 @@
       "buildFunction": "MarqueePageBuilder"
     },
     {
+      "name": "MediaComponent",
+      "pageSourceFile": "src/main/ets/pages/MediaComponent.ets",
+      "buildFunction": "MediaComponentBuilder"
+    },
+    {
       "name": "MenuPage",
       "pageSourceFile": "src/main/ets/pages/basic_component/MenuPage.ets",
       "buildFunction": "MenuPageBuilder"
     },
     {
+      "name": "NavRoutePage",
+      "pageSourceFile": "src/main/ets/pages/feature_component/NavRoutePage.ets",
+      "buildFunction": "NavRoutePageBuilder"
+    },
+    {
       "name": "NavigationPage",
       "pageSourceFile": "src/main/ets/pages/basic_component/NavigationPage.ets",
       "buildFunction": "NavigationPageBuilder"
+    },
+    {
+      "name": "NotFoundPage",
+      "pageSourceFile": "src/main/ets/pages/NotFoundPage.ets",
+      "buildFunction": "NotFoundPageBuilder"
+    },
+    {
+      "name": "OrientationSwitchPage",
+      "pageSourceFile": "src/main/ets/pages/feature_component/OrientationSwitchPage.ets",
+      "buildFunction": "OrientationSwitchPageBuilder"
+    },
+    {
+      "name": "PopupPage",
+      "pageSourceFile": "src/main/ets/pages/feature_component/PopupPage.ets",
+      "buildFunction": "PopupPageBuilder"
     },
     {
       "name": "ProgressPage",
@@ -119,6 +174,11 @@
       "name": "RichTextPage",
       "pageSourceFile": "src/main/ets/pages/basic_component/RichTextPage.ets",
       "buildFunction": "RichTextPageBuilder"
+    },
+    {
+      "name": "SafeAreaPage",
+      "pageSourceFile": "src/main/ets/pages/feature_component/SafeAreaPage.ets",
+      "buildFunction": "SafeAreaPageBuilder"
     },
     {
       "name": "ScrollBarPage",
@@ -151,6 +211,26 @@
       "buildFunction": "StepperPageBuilder"
     },
     {
+      "name": "SystemTabsPage",
+      "pageSourceFile": "src/main/ets/pages/feature_component/SystemTabsPage.ets",
+      "buildFunction": "SystemTabsPageBuilder"
+    },
+    {
+      "name": "TabPage",
+      "pageSourceFile": "src/main/ets/pages/feature_component/TabPage.ets",
+      "buildFunction": "TabPageBuilder"
+    },
+    {
+      "name": "TabPagerScaffoldPage",
+      "pageSourceFile": "src/main/ets/pages/feature_component/TabPagerScaffoldPage.ets",
+      "buildFunction": "TabPagerScaffoldPageBuilder"
+    },
+    {
+      "name": "TextInputPage",
+      "pageSourceFile": "src/main/ets/pages/feature_component/TextInputPage.ets",
+      "buildFunction": "TextInputPageBuilder"
+    },
+    {
       "name": "TextPage",
       "pageSourceFile": "src/main/ets/pages/basic_component/TextPage.ets",
       "buildFunction": "TextPageBuilder"
@@ -174,81 +254,6 @@
       "name": "WebPage",
       "pageSourceFile": "src/main/ets/pages/basic_component/WebPage.ets",
       "buildFunction": "WebPageBuilder"
-    },
-    {
-      "name": "ATabBarPage",
-      "pageSourceFile": "src/main/ets/pages/feature_component/ATabBarPage.ets",
-      "buildFunction": "ATabBarPageBuilder"
-    },
-    {
-      "name": "ATabBarPagerPage",
-      "pageSourceFile": "src/main/ets/pages/feature_component/ATabBarPagerPage.ets",
-      "buildFunction": "ATabBarPagerPageBuilder"
-    },
-    {
-      "name": "BTabBarPage",
-      "pageSourceFile": "src/main/ets/pages/feature_component/BTabBarPage.ets",
-      "buildFunction": "BTabBarPageBuilder"
-    },
-    {
-      "name": "BottomSheetPage",
-      "pageSourceFile": "src/main/ets/pages/feature_component/BottomSheetPage.ets",
-      "buildFunction": "BottomSheetPageBuilder"
-    },
-    {
-      "name": "DeviceInfoPage",
-      "pageSourceFile": "src/main/ets/pages/feature_component/DeviceInfoPage.ets",
-      "buildFunction": "DeviceInfoPageBuilder"
-    },
-    {
-      "name": "GridItemReorderPage",
-      "pageSourceFile": "src/main/ets/pages/feature_component/GridItemReorderPage.ets",
-      "buildFunction": "GridItemReorderPageBuilder"
-    },
-    {
-      "name": "ListItemReorderPage",
-      "pageSourceFile": "src/main/ets/pages/feature_component/ListItemReorderPage.ets",
-      "buildFunction": "ListItemReorderPageBuilder"
-    },
-    {
-      "name": "NavRoutePage",
-      "pageSourceFile": "src/main/ets/pages/feature_component/NavRoutePage.ets",
-      "buildFunction": "NavRoutePageBuilder"
-    },
-    {
-      "name": "OrientationSwitchPage",
-      "pageSourceFile": "src/main/ets/pages/feature_component/OrientationSwitchPage.ets",
-      "buildFunction": "OrientationSwitchPageBuilder"
-    },
-    {
-      "name": "PopupPage",
-      "pageSourceFile": "src/main/ets/pages/feature_component/PopupPage.ets",
-      "buildFunction": "PopupPageBuilder"
-    },
-    {
-      "name": "SafeAreaPage",
-      "pageSourceFile": "src/main/ets/pages/feature_component/SafeAreaPage.ets",
-      "buildFunction": "SafeAreaPageBuilder"
-    },
-    {
-      "name": "SystemTabsPage",
-      "pageSourceFile": "src/main/ets/pages/feature_component/SystemTabsPage.ets",
-      "buildFunction": "SystemTabsPageBuilder"
-    },
-    {
-      "name": "TabPage",
-      "pageSourceFile": "src/main/ets/pages/feature_component/TabPage.ets",
-      "buildFunction": "TabPageBuilder"
-    },
-    {
-      "name": "TabPagerScaffoldPage",
-      "pageSourceFile": "src/main/ets/pages/feature_component/TabPagerScaffoldPage.ets",
-      "buildFunction": "TabPagerScaffoldPageBuilder"
-    },
-    {
-      "name": "TextInputPage",
-      "pageSourceFile": "src/main/ets/pages/feature_component/TextInputPage.ets",
-      "buildFunction": "TextInputPageBuilder"
     }
   ]
 }

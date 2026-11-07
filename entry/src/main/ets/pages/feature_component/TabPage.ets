@@ -36,6 +36,11 @@ export struct TabPage {
       desc: '双层文字 + 裁剪窗口：红色背景内白字、背景外黑字，边界随侧滑逐帧移动',
       page: 'pages/feature_component/BTabBarPage'
     },
+    {
+      title: 'MNavigationBar 底部导航',
+      desc: 'widgets/MNavigationBar：Material 3 药丸 active indicator 滑动，Flex 等分固定项',
+      page: 'pages/feature_component/MNavigationBarPage'
+    },
   ]
 
   // 根节点必须是容器组件，自定义组件 CustomTitleBar 不能直接作为 @Entry 的根

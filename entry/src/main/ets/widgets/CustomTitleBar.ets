@@ -42,5 +42,6 @@ export struct CustomTitleBar {
     .width('100%')
     .height('100%')
     .backgroundColor($r('app.color.app_background'))
+    .expandSafeArea([SafeAreaType.SYSTEM],[SafeAreaEdge.TOP,SafeAreaEdge.BOTTOM])
   }
 }

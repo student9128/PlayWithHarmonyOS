@@ -27,7 +27,7 @@ export struct AppTitleBar {
       Text(this.title)
         .fontSize(AppSize.titleFontSize)
         .fontWeight(600)
-        .fontColor($r('app.color.app_on_surface'))
+        .fontColor($r('app.color.app_primary'))
         .maxLines(1)
         .textOverflow({ overflow: TextOverflow.Ellipsis })
         .textAlign(this.titleAlign === AppTitleAlign.Center ? TextAlign.Center : TextAlign.Start)
