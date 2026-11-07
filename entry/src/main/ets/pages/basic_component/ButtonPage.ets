@@ -1,9 +1,8 @@
 import { CustomTitleBar } from '../../widgets/CustomTitleBar'
 
-@Entry
-@Component
-struct ButtonPage {
-  @State message: string = 'ButtonPage'
+@ComponentV2
+export struct ButtonPage {
+  @Local message: string = 'ButtonPage'
 
   build() {
     Column() {
@@ -18,4 +17,10 @@ struct ButtonPage {
     }
     .height('100%')
   }
+}
+@Builder
+export function ButtonPageBuilder() {
+  NavDestination() {
+    ButtonPage()
+  }.hideTitleBar(true)
 }

@@ -1,11 +1,10 @@
 import { showToast } from '../../utils/ToastUtils';
 import { CustomTitleBar } from '../../widgets/CustomTitleBar'
 
-@Entry
-@Component
-struct SystemTabsPage {
+@ComponentV2
+export struct SystemTabsPage {
   private controller: TabsController = new TabsController();
-  @State currentSelectedIndex: number = 0;
+  @Local currentSelectedIndex: number = 0;
 
   build() {
     RelativeContainer() {
@@ -102,4 +101,10 @@ function customTab(param:TabParams) {
       bottom: 3
     })
     .backgroundColor(param.isSelected ? Color.Transparent : Color.Gray)
+}
+@Builder
+export function SystemTabsPageBuilder() {
+  NavDestination() {
+    SystemTabsPage()
+  }.hideTitleBar(true)
 }

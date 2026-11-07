@@ -1,9 +1,8 @@
 import { CustomTitleBar } from '../../widgets/CustomTitleBar'
 
-@Entry
-@Component
-struct QRCodePage {
-  @State message: string = "GaugePage"
+@ComponentV2
+export struct QRCodePage {
+  @Local message: string = "GaugePage"
 
   build() {
     Column() {
@@ -17,4 +16,10 @@ struct QRCodePage {
     }}
     .height('100%')
   }
+}
+@Builder
+export function QRCodePageBuilder() {
+  NavDestination() {
+    QRCodePage()
+  }.hideTitleBar(true)
 }

@@ -1,9 +1,8 @@
 import { CustomTitleBar } from '../../widgets/CustomTitleBar'
 
-@Entry
-@Component
-struct DividerPage {
-  @State message: string = "DividerPage"
+@ComponentV2
+export struct DividerPage {
+  @Local message: string = "DividerPage"
 
   build() {
     Column() {
@@ -17,4 +16,10 @@ struct DividerPage {
     }}
     .height('100%')
   }
+}
+@Builder
+export function DividerPageBuilder() {
+  NavDestination() {
+    DividerPage()
+  }.hideTitleBar(true)
 }

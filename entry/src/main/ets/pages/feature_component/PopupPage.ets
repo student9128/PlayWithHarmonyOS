@@ -1,13 +1,13 @@
 import { CustomTitleBar } from '../../widgets/CustomTitleBar'
+import { AppRadius } from '../../common/AppConstants'
 
-@Entry
-@Component
-struct PopupPage {
-  @State show1: boolean = false
-  @State show2: boolean = false
-  @State show3: boolean = false
-  @State show4: boolean = false
-  @State show5: boolean = false
+@ComponentV2
+export struct PopupPage {
+  @Local show1: boolean = false
+  @Local show2: boolean = false
+  @Local show3: boolean = false
+  @Local show4: boolean = false
+  @Local show5: boolean = false
 
   @Builder
   popBuilder(str: string) {
@@ -18,6 +18,8 @@ struct PopupPage {
         top: 5,
         bottom: 5
       })
+      .borderRadius(AppRadius.dialog)
+      .backgroundColor($r('app.color.app_primary_container'))
   }
 
   build() {
@@ -63,4 +65,10 @@ struct PopupPage {
 
     }
   }
+}
+@Builder
+export function PopupPageBuilder() {
+  NavDestination() {
+    PopupPage()
+  }.hideTitleBar(true)
 }

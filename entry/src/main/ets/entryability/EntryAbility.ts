@@ -61,7 +61,7 @@ export default class EntryAbility extends UIAbility {
       windowClass.setUIContent('pages/SplashPage', (err) => {
         if (err.code == 0) {
           try {
-            windowClass.setWindowBackgroundColor(color);
+            // windowClass.setWindowBackgroundColor(color);
           } catch (exception) {
             console.error('Failed to set the background color. Cause: ' + JSON.stringify(exception));
           }

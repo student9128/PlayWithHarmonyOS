@@ -1,12 +1,12 @@
+import { AppTitleBar } from '../../widgets/AppTitleBar'
 import { window } from '@kit.ArkUI'
 import { key_window_class } from '../../common/Key'
 
-@Entry
-@Component
-struct NavRoutePage {
-  @State isActiveWLAN: boolean = false
-  @State isActiveBluetooth: boolean = false
-  @State isPortrait:boolean=false
+@ComponentV2
+export struct NavRoutePage {
+  @Local isActiveWLAN: boolean = false
+  @Local isActiveBluetooth: boolean = false
+  @Local isPortrait:boolean=false
 
   build() {
     Column() {
@@ -74,11 +74,22 @@ struct NavRoutePage {
           this.isActiveBluetooth = isActivated
         })
       }
-      .title('设置')
+      // 外层 NavDestination 已提供统一标题栏，这里隐藏内层标题避免双层
       .titleMode(NavigationTitleMode.Free)
       .mode(NavigationMode.Auto)
-      .hideTitleBar(false)
+      .hideTitleBar(true)
       .hideToolBar(true)
     }.height('100%')
   }
+}
+@Builder
+export function NavRoutePageBuilder() {
+  NavDestination() {
+    Column() {
+      AppTitleBar({ title: 'NavRoutePage' })
+      Column() {
+        NavRoutePage()
+      }.width('100%').layoutWeight(1)
+    }.width('100%').height('100%')
+  }.hideTitleBar(true)
 }

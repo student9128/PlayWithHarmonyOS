@@ -1,9 +1,8 @@
 import { CustomTitleBar } from '../../widgets/CustomTitleBar'
 
-@Entry
-@Component
-struct StepperPage {
-  @State message: string = "GaugePage"
+@ComponentV2
+export struct StepperPage {
+  @Local message: string = "GaugePage"
 
   build() {
     Column() {
@@ -17,4 +16,10 @@ struct StepperPage {
     }}
     .height('100%')
   }
+}
+@Builder
+export function StepperPageBuilder() {
+  NavDestination() {
+    StepperPage()
+  }.hideTitleBar(true)
 }

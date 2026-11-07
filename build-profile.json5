@@ -32,6 +32,21 @@
           "debuggable": false
         }
       }
+    ],
+    "signingConfigs": [
+      {
+        "name": "default",
+        "type": "HarmonyOS",
+        "material": {
+          "certpath": "/Users/kevinjing/.ohos/config/default_PlayWithHarmonyOS_bAno86TAgirtrpYUDK0qImpHvthD9WcpUpz-87nyzdw=.cer",
+          "keyAlias": "debugKey",
+          "keyPassword": "0000001B201B841F51ADEB2BDE7AC91D53FD244FE041B3C73CA39C76F69FD9E5DCAF7D69C251F65BFEC493",
+          "profile": "/Users/kevinjing/.ohos/config/default_PlayWithHarmonyOS_bAno86TAgirtrpYUDK0qImpHvthD9WcpUpz-87nyzdw=.p7b",
+          "signAlg": "SHA256withECDSA",
+          "storeFile": "/Users/kevinjing/.ohos/config/default_PlayWithHarmonyOS_bAno86TAgirtrpYUDK0qImpHvthD9WcpUpz-87nyzdw=.p12",
+          "storePassword": "0000001BD80C8E77F359311A56943A4F5236AFE38D7090CF270A34D568AAE91258B8678F9639151C5139FA"
+        }
+      }
     ]
   },
   "modules": [

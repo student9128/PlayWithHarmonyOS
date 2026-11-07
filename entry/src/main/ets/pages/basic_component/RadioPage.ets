@@ -1,9 +1,8 @@
 import { CustomTitleBar } from '../../widgets/CustomTitleBar'
 
-@Entry
-@Component
-struct RadioPage {
-  @State message: string = "GaugePage"
+@ComponentV2
+export struct RadioPage {
+  @Local message: string = "GaugePage"
 
   build() {
     Column() {
@@ -17,4 +16,10 @@ struct RadioPage {
     }}
     .height('100%')
   }
+}
+@Builder
+export function RadioPageBuilder() {
+  NavDestination() {
+    RadioPage()
+  }.hideTitleBar(true)
 }

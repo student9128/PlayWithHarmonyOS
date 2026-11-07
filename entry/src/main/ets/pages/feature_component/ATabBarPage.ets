@@ -1,9 +1,8 @@
 import { ATabBar, ATabBarCenterMode, ATabBarIndicatorShape } from '../../widgets/ATabBar'
 import { CustomTitleBar } from '../../widgets/CustomTitleBar'
 
-@Entry
 @ComponentV2
-struct ATabBarPage {
+export struct ATabBarPage {
   @Local topIndex: number = 0
   @Local bottomIndex: number = 2
   @Local roundedIndex: number = 1
@@ -191,4 +190,10 @@ struct ATabBarCanvasIndicator {
         this.draw()
       })
   }
+}
+@Builder
+export function ATabBarPageBuilder() {
+  NavDestination() {
+    ATabBarPage()
+  }.hideTitleBar(true)
 }

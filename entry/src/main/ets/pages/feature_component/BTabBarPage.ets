@@ -7,9 +7,8 @@ import { CustomTitleBar } from '../../widgets/CustomTitleBar'
  * - 开关可在「整字变白（旧写法，有 bug）」与「按 indicator 边界像素级反色」之间切换对比
  * - 配合 TabPagerScaffold：点 tab 补间、侧滑逐帧跟手时，反色边界都跟着 indicator 走
  */
-@Entry
 @ComponentV2
-struct BTabBarPage {
+export struct BTabBarPage {
   @Local currentIndex: number = 1
   @Local controlledIndex: number = 1
   @Local swipeProgress: number = -1
@@ -125,4 +124,10 @@ struct BTabBarPage {
     this.currentIndex = index
     this.controlledIndex = index
   }
+}
+@Builder
+export function BTabBarPageBuilder() {
+  NavDestination() {
+    BTabBarPage()
+  }.hideTitleBar(true)
 }

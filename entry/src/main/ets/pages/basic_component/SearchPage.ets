@@ -1,9 +1,8 @@
 import { CustomTitleBar } from '../../widgets/CustomTitleBar'
 
-@Entry
-@Component
-struct SearchPage {
-  @State message: string = "GaugePage"
+@ComponentV2
+export struct SearchPage {
+  @Local message: string = "GaugePage"
 
   build() {
     Column() {
@@ -17,4 +16,10 @@ struct SearchPage {
     }}
     .height('100%')
   }
+}
+@Builder
+export function SearchPageBuilder() {
+  NavDestination() {
+    SearchPage()
+  }.hideTitleBar(true)
 }

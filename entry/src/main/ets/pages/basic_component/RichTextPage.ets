@@ -1,9 +1,8 @@
 import { CustomTitleBar } from '../../widgets/CustomTitleBar'
 
-@Entry
-@Component
-struct RichTextPage {
-  @State message: string = "GaugePage"
+@ComponentV2
+export struct RichTextPage {
+  @Local message: string = "GaugePage"
 
   build() {
     Column() {
@@ -17,4 +16,10 @@ struct RichTextPage {
     }}
     .height('100%')
   }
+}
+@Builder
+export function RichTextPageBuilder() {
+  NavDestination() {
+    RichTextPage()
+  }.hideTitleBar(true)
 }

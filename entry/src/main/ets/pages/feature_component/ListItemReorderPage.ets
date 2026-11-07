@@ -1,12 +1,11 @@
 import { CustomTitleBar } from '../../widgets/CustomTitleBar'
 import { curves } from '@kit.ArkUI';
 
-@Entry
-@Component
-struct ListItemReorderPage {
-  @State arr: string[] = ['Java', 'Kotlin', 'JavaScript', 'TypeScript', 'Dart', 'Swift', 'ArkTS']
-  @State dragItemX: string = '';
-  @State dragIndex: number = -1;
+@ComponentV2
+export struct ListItemReorderPage {
+  @Local arr: string[] = ['Java', 'Kotlin', 'JavaScript', 'TypeScript', 'Dart', 'Swift', 'ArkTS']
+  @Local dragItemX: string = '';
+  @Local dragIndex: number = -1;
 
   @Builder
   itemWhileDrag() {
@@ -46,12 +45,12 @@ struct ListItemReorderPage {
       })
   }
 
-  @State dragItem: number = -1
+  @Local dragItem: number = -1
   private dragRefOffset: number = 0
-  @State offsetX: number = 0
-  @State offsetY: number = 0
+  @Local offsetX: number = 0
+  @Local offsetY: number = 0
 
-  @State lastOffsetY:number=0
+  @Local lastOffsetY:number=0
   itemHeight:number=40
   @Builder
   secondList() {
@@ -179,4 +178,10 @@ struct ListItemReorderPage {
       this.arr[insertIndex] = temp;
     })
   }
+}
+@Builder
+export function ListItemReorderPageBuilder() {
+  NavDestination() {
+    ListItemReorderPage()
+  }.hideTitleBar(true)
 }

@@ -1,9 +1,8 @@
 import { CustomTitleBar } from '../../widgets/CustomTitleBar'
 
-@Entry
-@Component
-struct MenuPage {
-  @State message: string = "MenuPage"
+@ComponentV2
+export struct MenuPage {
+  @Local message: string = "MenuPage"
 
   build() {
     Column() {
@@ -17,4 +16,10 @@ struct MenuPage {
     }}
     .height('100%')
   }
+}
+@Builder
+export function MenuPageBuilder() {
+  NavDestination() {
+    MenuPage()
+  }.hideTitleBar(true)
 }

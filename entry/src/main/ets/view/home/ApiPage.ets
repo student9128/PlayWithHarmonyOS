@@ -7,7 +7,7 @@ import { HomePage } from '../../pages/demo/HomePage'
 import { HarmonyOSDevPage } from '../../pages/demo/HarmonyOSDevPage'
 import { ToolPage } from '../../pages/demo/ToolPage'
 
-@Component
+@ComponentV2
 export struct ApiPage {
   private tabController: TabsController = new TabsController()
 
@@ -20,8 +20,8 @@ export struct ApiPage {
   }
 
   icons: string[] = ['sys.symbol.house', 'sys.symbol.heart', 'sys.symbol.square',]
-  @State showSideBar: boolean = false
-  @State currentIndex: number = 0;
+  @Local showSideBar: boolean = false
+  @Local currentIndex: number = 0;
   pageInfos: NavPathStack = new NavPathStack()
   isUseInterception: boolean = false;
 

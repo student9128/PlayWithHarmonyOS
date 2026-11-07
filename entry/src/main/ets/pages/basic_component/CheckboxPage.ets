@@ -1,9 +1,8 @@
 import { CustomTitleBar } from '../../widgets/CustomTitleBar'
 
-@Entry
-@Component
-struct CheckboxPage {
-  @State message: string = 'CheckboxPage'
+@ComponentV2
+export struct CheckboxPage {
+  @Local message: string = 'CheckboxPage'
 
   build() {
     Column() {
@@ -18,4 +17,10 @@ struct CheckboxPage {
     }
     .height('100%')
   }
+}
+@Builder
+export function CheckboxPageBuilder() {
+  NavDestination() {
+    CheckboxPage()
+  }.hideTitleBar(true)
 }

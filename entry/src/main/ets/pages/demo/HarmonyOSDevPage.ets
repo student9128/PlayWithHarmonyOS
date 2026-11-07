@@ -2,7 +2,7 @@
 export function HarmonyOSDevPageBuilder(){
   HarmonyOSDevPage()
 }
-@Component
+@ComponentV2
 export struct HarmonyOSDevPage {
   build() {
     Column() {

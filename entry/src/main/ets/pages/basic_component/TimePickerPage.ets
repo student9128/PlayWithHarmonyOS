@@ -1,9 +1,8 @@
 import { CustomTitleBar } from '../../widgets/CustomTitleBar'
 
-@Entry
-@Component
-struct TimePickerPage {
-  @State message: string = "GaugePage"
+@ComponentV2
+export struct TimePickerPage {
+  @Local message: string = "GaugePage"
 
   build() {
     Column() {
@@ -17,4 +16,10 @@ struct TimePickerPage {
     }}
     .height('100%')
   }
+}
+@Builder
+export function TimePickerPageBuilder() {
+  NavDestination() {
+    TimePickerPage()
+  }.hideTitleBar(true)
 }

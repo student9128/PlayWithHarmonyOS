@@ -6,11 +6,42 @@ import { TextModifier, UIUtils } from "@kit.ArkUI";
 import { colorPrimary, PlayColor } from "../../common/Theme";
 import { httpPost } from "../../http/HttpUtils";
 import LogUtils from "../../utils/LogUtils";
+import { AppRadius, AppTitleAlign, appTitleAlign } from '../../common/AppConstants'
 
 @ComponentV2
 export struct MePage {
   @Local imgData: string[] = [];
   @Local fontStyle : TextAttribute = UIUtils.makeObserved(new HelloModifier().fontSize(30))
+  @Local titleCentered: boolean = true
+
+  /** 标题居左 / 居中的全局设置项 */
+  @Builder
+  titleAlignSetting() {
+    Row() {
+      Column() {
+        Text('标题居中')
+          .fontSize(16)
+          .fontColor($r('app.color.app_on_surface'))
+        Text('关闭后所有页面标题居左')
+          .fontSize(12)
+          .fontColor($r('app.color.app_on_surface_variant'))
+          .margin({ top: 4 })
+      }
+      .alignItems(HorizontalAlign.Start)
+      .layoutWeight(1)
+
+      Toggle({ type: ToggleType.Switch, isOn: this.titleCentered })
+        .selectedColor($r('app.color.app_primary'))
+        .onChange((isOn: boolean) => {
+          this.titleCentered = isOn
+          appTitleAlign().align = isOn ? AppTitleAlign.Center : AppTitleAlign.Start
+        })
+    }
+    .width('100%')
+    .padding(16)
+    .borderRadius(AppRadius.item)
+    .backgroundColor($r('app.color.app_primary_container'))
+  }
 
   getImage() {
     try {
@@ -32,6 +63,7 @@ export struct MePage {
 
   build() {
     Column() {
+      this.titleAlignSetting()
       Image($r('app.media.icon')).width(100).height(100)
       Button('获取图片').onClick(() => {
         this.getImage();
@@ -59,6 +91,7 @@ export struct MePage {
           }
         })
       }.columnsTemplate('1fr 1fr').aspectRatio(1)
-    }.backgroundColor($r('app.color.start_window_background'))
+    }
+    // .backgroundColor($r('app.color.start_window_background'))
   }
 }

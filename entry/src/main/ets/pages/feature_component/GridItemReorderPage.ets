@@ -1,9 +1,8 @@
 import { CustomTitleBar } from '../../widgets/CustomTitleBar'
 
-@Entry
-@Component
-struct GridItemReorderPage {
-  @State imageList: string[] =
+@ComponentV2
+export struct GridItemReorderPage {
+  @Local imageList: string[] =
     [
       'http://gips0.baidu.com/it/u=1690853528,2506870245&fm=3028&app=3028&f=JPEG&fmt=auto?w=1024&h=1024',
       'http://gips1.baidu.com/it/u=3874647369,3220417986&fm=3028&app=3028&f=JPEG&fmt=auto?w=720&h=1280',
@@ -15,14 +14,14 @@ struct GridItemReorderPage {
       'http://gips0.baidu.com/it/u=3557606594,2640240494&fm=3028&app=3028&f=JPEG&fmt=auto?w=2048&h=2048',
       'https://gips2.baidu.com/it/u=406595553,3023311630&fm=3028&app=3028&f=JPEG&fmt=auto&q=100&size=f900_1200'
     ]
-  @State dragImageUrl:string=''
+  @Local dragImageUrl:string=''
   @Builder
   itemWhileDrag(){
     Image(this.dragImageUrl).width(120).height(100)
   }
 
-  @State dataList: string[] = ['Java', 'Kotlin', 'JavaScript', 'TypeScript', 'Dart', 'Swift', 'ArkTS']
-  @State dragItem: string = '';
+  @Local dataList: string[] = ['Java', 'Kotlin', 'JavaScript', 'TypeScript', 'Dart', 'Swift', 'ArkTS']
+  @Local dragItem: string = '';
   @Builder
   itemTextWhileDrag() {
     Row() {
@@ -130,4 +129,10 @@ struct GridItemReorderPage {
     console.log(`changeIndex===${tmp}`)
     this.imageList.splice(index2, 0, tmp[0]);
   }
+}
+@Builder
+export function GridItemReorderPageBuilder() {
+  NavDestination() {
+    GridItemReorderPage()
+  }.hideTitleBar(true)
 }

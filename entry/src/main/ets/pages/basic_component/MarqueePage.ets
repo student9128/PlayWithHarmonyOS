@@ -1,9 +1,8 @@
 import { CustomTitleBar } from '../../widgets/CustomTitleBar'
 
-@Entry
-@Component
-struct MarqueePage {
-  @State message: string = "MarqueePage"
+@ComponentV2
+export struct MarqueePage {
+  @Local message: string = "MarqueePage"
 
   build() {
     Column() {
@@ -17,4 +16,10 @@ struct MarqueePage {
     }}
     .height('100%')
   }
+}
+@Builder
+export function MarqueePageBuilder() {
+  NavDestination() {
+    MarqueePage()
+  }.hideTitleBar(true)
 }

@@ -5,9 +5,8 @@ import { printError, printInfo } from '../../utils/LogUtils';
 import json from '@ohos.util.json';
 import { showToast } from '../../utils/ToastUtils';
 
-@Entry
-@Component
-struct DeviceInfoPage {
+@ComponentV2
+export struct DeviceInfoPage {
   async aboutToAppear(): Promise<void> {
     try {
       deviceCertificate.getDeviceToken().then((token)=>{
@@ -55,4 +54,10 @@ struct DeviceInfoPage {
       }
     }
   }
+}
+@Builder
+export function DeviceInfoPageBuilder() {
+  NavDestination() {
+    DeviceInfoPage()
+  }.hideTitleBar(true)
 }

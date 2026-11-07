@@ -1,9 +1,8 @@
 import { CustomTitleBar } from '../../widgets/CustomTitleBar'
 
-@Entry
-@Component
-struct TogglePage {
-  @State message: string = "GaugePage"
+@ComponentV2
+export struct TogglePage {
+  @Local message: string = "GaugePage"
 
   build() {
     Column() {
@@ -17,4 +16,10 @@ struct TogglePage {
     }}
     .height('100%')
   }
+}
+@Builder
+export function TogglePageBuilder() {
+  NavDestination() {
+    TogglePage()
+  }.hideTitleBar(true)
 }

@@ -12,9 +12,20 @@
     {"name": "black","value": "#000000"},
     {"name": "gray","value": "#eeeeee"},
     {"name": "transparent","value": "#00000000"},
-    {"name": "primary_color","value": "#FA7070"},
-    {"name": "color_primary_opacity_30","value": "#4DFA7070"},
+    {"name": "primary_color","value": "#D0BCFF"},
+    {"name": "color_primary_opacity_30","value": "#4DD0BCFF"},
     {"name": "background_color","value": "#FFFFFF"},
-    {"name": "color_background_list_item","value": "#282A3A"}
+    {"name": "color_background_list_item","value": "#282A3A"},
+    {"name": "app_primary","value": "#D0BCFF"},
+    {"name": "app_on_primary","value": "#381E72"},
+    {"name": "app_primary_container","value": "#4F378B"},
+    {"name": "app_on_primary_container","value": "#EADDFF"},
+    {"name": "app_surface","value": "#141218"},
+    {"name": "app_surface_variant","value": "#49454F"},
+    {"name": "app_on_surface","value": "#E6E0E9"},
+    {"name": "app_on_surface_variant","value": "#CAC4D0"},
+    {"name": "app_outline","value": "#938F99"},
+    {"name": "app_background","value": "#1D1B20"},
+    {"name": "app_divider","value": "#49454F"}
   ]
 }

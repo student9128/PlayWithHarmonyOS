@@ -8,9 +8,8 @@ import { CustomTitleBar } from '../../widgets/CustomTitleBar'
  * - 点 tab：ATabBar.onChange 同时更新 currentIndex（indicator 立即滑动）与 controlledIndex（驱动 Swiper）
  * - 手势滑内容页：TabPagerScaffold.onTabChange 回写 currentIndex，indicator 跟着 Swiper 切换
  */
-@Entry
 @ComponentV2
-struct ATabBarPagerPage {
+export struct ATabBarPagerPage {
   @Local currentIndex: number = 0
   @Local controlledIndex: number = 0
   @Local indicatorShape: ATabBarIndicatorShape = ATabBarIndicatorShape.BottomLine
@@ -175,4 +174,10 @@ struct ATabBarPagerPage {
     }
     return ATabBarIndicatorShape.BottomLine
   }
+}
+@Builder
+export function ATabBarPagerPageBuilder() {
+  NavDestination() {
+    ATabBarPagerPage()
+  }.hideTitleBar(true)
 }

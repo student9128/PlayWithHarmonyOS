@@ -1,9 +1,8 @@
 import { CustomTitleBar } from '../../widgets/CustomTitleBar'
 
-@Entry
-@Component
-struct ProgressPage {
-  @State message: string = "GaugePage"
+@ComponentV2
+export struct ProgressPage {
+  @Local message: string = "GaugePage"
 
   build() {
     Column() {
@@ -17,4 +16,10 @@ struct ProgressPage {
     }}
     .height('100%')
   }
+}
+@Builder
+export function ProgressPageBuilder() {
+  NavDestination() {
+    ProgressPage()
+  }.hideTitleBar(true)
 }

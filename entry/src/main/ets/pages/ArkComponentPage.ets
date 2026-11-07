@@ -1,7 +1,9 @@
-import router from '@ohos.router';
 import { CustomType, RouteConstants } from '../common/RouteConstants';
 import LogUtils from '../utils/LogUtils';
 import { hilog } from '@kit.PerformanceAnalysisKit';
+import { AppRadius, AppSize, Constants } from '../common/AppConstants';
+import { AppRouteParams, toRouteName } from '../common/AppRouteParams';
+import { AppTitleBar } from '../widgets/AppTitleBar';
 
 class BasicDataSource implements IDataSource {
   private listeners: DataChangeListener[] = [];
@@ -86,57 +88,60 @@ class MyDataSource extends BasicDataSource {
     this.notifyDataAdd(this.dataArray.length - 1);
   }
 }
-interface ParamsModel{
-  data:CustomType[],
-  title:string
-}
-
-@Entry
-@Component
-struct ArkComponentPage {
+@ComponentV2
+export struct ArkComponentPage {
   private data: MyDataSource = new MyDataSource();
-  private _title:string=''
 
   aboutToAppear() {
-    let params = router.getParams() as ParamsModel
-    // let params = router.getParams()['data'] as Array<CustomType>
-    this._title = params.title
-    for (let i = 0; i <= params.data.length; i++) {
-      console.info(`${JSON.stringify(params.data[i])}`)
-      this.data.pushData(params.data[i])
+    for (let i = 0; i < AppRouteParams.groupData.length; i++) {
+      this.data.pushData(AppRouteParams.groupData[i])
     }
   }
 
   build() {
-    Navigation() {
-      Column() {
-        List() {
-          LazyForEach(this.data, (item: CustomType) => {
-            ListItem() {
-              if (item) {
-                Text(item.title).listItemStyle().fontColor($r('app.color.text_color')).textAlign(TextAlign.Center)
-                  .onClick(() => {
-                    // LogUtils.printInfo(item)
-                    hilog.info(0x0000, 'testTag', '%{public}s', item)
-                    if (item.page != '') {
-                      router.pushUrl({ url: item.page })
-                    } else {
-                      router.pushUrl({ url: RouteConstants.NOT_FOUND_PAGE })
-                    }
-                  })
-              }
-            }.margin({ top: 10 })
-          })
-        }.cachedCount(5)
-      }.height("100%").width("100%").padding({ left: 10, right: 10 })
-    }.titleMode(NavigationTitleMode.Mini)
-    .title(this._title)
-    .mode(NavigationMode.Stack)
+    List() {
+      LazyForEach(this.data, (item: CustomType) => {
+        ListItem() {
+          if (item) {
+            Text(item.title).listItemStyle().fontColor($r('app.color.text_color')).textAlign(TextAlign.Center)
+              .onClick(() => {
+                hilog.info(0x0000, 'testTag', '%{public}s', item)
+                const name: string = item.page != '' ? toRouteName(item.page) :
+                  toRouteName(RouteConstants.NOT_FOUND_PAGE)
+                Constants.navStack.pushPathByName(name, undefined)
+              })
+          }
+        }.margin({ top: 10 })
+      }, (item: CustomType) => item.page)
+    }
+    .cachedCount(5)
+    // 沉浸式：List 占满父容器，expandSafeArea 加在 List 自身。
+    // 不能用 layoutWeight(1)：那会把 List 约束在安全区内，底部导航条无法沉浸。
+    .width('100%')
+    .height('100%')
+    .expandSafeArea([SafeAreaType.SYSTEM], [SafeAreaEdge.TOP, SafeAreaEdge.BOTTOM])
+    .padding({ left: 10, right: 10 })
+    // 官方 FAQ「List展示不全」方案五：上方 AppTitleBar 固定占 56vp，
+    // List 用 100% 高会被整体下压这段距离，内容末尾留等量偏移即可滚出最后一项
+    .contentEndOffset(AppSize.titleBarHeight)
   }
 
 }
 
 @Styles
 function listItemStyle() {
-  .backgroundColor($r('app.color.color_background_list_item')).width('100%').padding({ left: 16, right: 16, top: 30, bottom: 30 }).borderRadius(16)
+  .backgroundColor($r('app.color.app_primary_container')).width('100%')
+  .padding({ left: 16, right: 16, top: 18, bottom: 18 }).borderRadius(AppRadius.item)
+}
+@Builder
+export function ArkComponentPageBuilder() {
+  NavDestination() {
+    Column() {
+      AppTitleBar({ title: AppRouteParams.groupTitle })
+      ArkComponentPage()
+    }
+    .width('100%')
+    .height('100%')
+  }
+  .hideTitleBar(true)
 }

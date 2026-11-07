@@ -1,9 +1,8 @@
 import { CustomTitleBar } from '../../widgets/CustomTitleBar'
 
-@Entry
-@Component
-struct BlankIndexerPage {
-  @State message: string = 'BlankIndexerPage'
+@ComponentV2
+export struct BlankIndexerPage {
+  @Local message: string = 'BlankIndexerPage'
 
   build() {
     Column() {
@@ -18,4 +17,10 @@ struct BlankIndexerPage {
     }
     .height('100%')
   }
+}
+@Builder
+export function BlankPageBuilder() {
+  NavDestination() {
+    BlankIndexerPage()
+  }.hideTitleBar(true)
 }

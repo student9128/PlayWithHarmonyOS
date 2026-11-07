@@ -1,9 +1,8 @@
 import { CustomTitleBar } from '../../widgets/CustomTitleBar'
 
-@Entry
-@Component
-struct LoadingProgressPage {
-  @State message: string = "LoadingProgressPage"
+@ComponentV2
+export struct LoadingProgressPage {
+  @Local message: string = "LoadingProgressPage"
 
   build() {
     Column() {
@@ -17,4 +16,10 @@ struct LoadingProgressPage {
     }}
     .height('100%')
   }
+}
+@Builder
+export function LoadingProgressPageBuilder() {
+  NavDestination() {
+    LoadingProgressPage()
+  }.hideTitleBar(true)
 }

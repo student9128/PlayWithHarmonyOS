@@ -1,12 +1,11 @@
+import { AppTitleBar } from '../../widgets/AppTitleBar'
 import { hSize, wSize } from '../../utils/ScreenUtils'
 
-@Entry
-@Component
-struct AlphabetIndexerPage {
-  @State message: string = 'AlphabetIndexerPage'
+@ComponentV2
+export struct AlphabetIndexerPage {
+  @Local message: string = 'AlphabetIndexerPage'
 
   build() {
-    Navigation(){
     Row() {
       Column() {
         // Text(this.message)
@@ -27,8 +26,18 @@ struct AlphabetIndexerPage {
       .alignItems(HorizontalAlign.Start)
       .justifyContent(FlexAlign.Start)
     }
+    .width('100%')
     .height('100%')
-    }.titleMode(NavigationTitleMode.Mini)
-    .mode(NavigationMode.Stack)
   }
+}
+@Builder
+export function AlphabetIndexerPageBuilder() {
+  NavDestination() {
+    Column() {
+      AppTitleBar({ title: 'AlphabetIndexerPage' })
+      Column() {
+        AlphabetIndexerPage()
+      }.width('100%').layoutWeight(1)
+    }.width('100%').height('100%')
+  }.hideTitleBar(true)
 }

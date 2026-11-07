@@ -1,5 +1,6 @@
-import router from '@ohos.router';
 import { CustomTitleBar } from '../../widgets/CustomTitleBar'
+import { AppRadius, Constants } from '../../common/AppConstants'
+import { toRouteName } from '../../common/AppRouteParams'
 
 interface TabDemoItem {
   title: string
@@ -7,9 +8,8 @@ interface TabDemoItem {
   page: string
 }
 
-@Entry
-@Component
-struct TabPage {
+@ComponentV2
+export struct TabPage {
   private demoList: TabDemoItem[] = [
     {
       title: '系统 Tabs 实现',
@@ -58,16 +58,10 @@ struct TabPage {
               .alignItems(HorizontalAlign.Start)
               .width('100%')
               .padding({ left: 16, right: 16, top: 18, bottom: 18 })
-              .borderRadius(16)
-              .backgroundColor($r('app.color.color_background_list_item'))
+              .borderRadius(AppRadius.item)
+              .backgroundColor($r('app.color.app_primary_container'))
               .onClick(() => {
-                router.pushUrl({ url: item.page }, (err) => {
-                  if (err) {
-                    console.error(`pushUrl failed, code is ${err.code}, message is ${err.message}`);
-                    return
-                  }
-                  console.info('pushUrl success');
-                })
+                Constants.navStack.pushPathByName(toRouteName(item.page), undefined)
               })
             }.margin({ top: 10 })
           }, (item: TabDemoItem) => item.page)
@@ -78,4 +72,10 @@ struct TabPage {
     }
     .width('100%').height('100%')
   }
+}
+@Builder
+export function TabPageBuilder() {
+  NavDestination() {
+    TabPage()
+  }.hideTitleBar(true)
 }

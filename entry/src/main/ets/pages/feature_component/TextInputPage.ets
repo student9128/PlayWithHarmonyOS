@@ -5,24 +5,23 @@ import { webview } from '@kit.ArkWeb';
 import { printInfo } from '../../utils/LogUtils';
 import { densityPixels, hSize, scaleDensity, wSize } from '../../utils/ScreenUtils';
 
-@Entry
-@Component
-struct TextInputPage {
+@ComponentV2
+export struct TextInputPage {
   private controller: webview.WebviewController = new webview.WebviewController();
   private pageWidth = 320;
   private pageHeight = 500;
-  @State screenHeight: number | string = '100%';
-  @State webViewVisibility: Visibility = Visibility.Visible;
-  @State flexAlign: FlexAlign = FlexAlign.Center;
-  @State currentText: string = '';
-  @State currentText1: string = '';
-  @State currentText1Temp: string = '';
+  @Local screenHeight: number | string = '100%';
+  @Local webViewVisibility: Visibility = Visibility.Visible;
+  @Local flexAlign: FlexAlign = FlexAlign.Center;
+  @Local currentText: string = '';
+  @Local currentText1: string = '';
+  @Local currentText1Temp: string = '';
   textInputController: TextInputController = new TextInputController()
   textInputController1: TextInputController = new TextInputController()
   focusKey: string = 'focus'
-  @State isFocus: boolean = false
-  @State isUserNameFocus:boolean=false
-  @State isPwdFocus:boolean=false
+  @Local isFocus: boolean = false
+  @Local isUserNameFocus:boolean=false
+  @Local isPwdFocus:boolean=false
 
   aboutToAppear() {
     window.getLastWindow(getContext(this)).then(currentWindow => {
@@ -53,7 +52,8 @@ struct TextInputPage {
           this.currentText1Temp = v
         }).fontColor(Color.Yellow).fontSize(16).caretColor(Color.Green)
         TextInput().type(InputType.Password).margin({ top: 10 })
-        TextInput({ text: $$this.currentText, placeholder: '请输入内容', controller: this.textInputController, })
+        // V2 单向数据流：下方 onChange 已回写 currentText，无需双向绑定语法
+        TextInput({ text: this.currentText, placeholder: '请输入内容', controller: this.textInputController, })
           .type(InputType.Password)
           .onChange((v) => {
             printInfo(`v=======${v}`)
@@ -205,4 +205,10 @@ struct TextInputPage {
     //   .backgroundColor('#999955')
     //   .alignContent(Alignment.Center)
   }
+}
+@Builder
+export function TextInputPageBuilder() {
+  NavDestination() {
+    TextInputPage()
+  }.hideTitleBar(true)
 }

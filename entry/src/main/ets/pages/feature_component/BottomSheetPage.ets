@@ -1,10 +1,11 @@
-@Entry
-@Component
-struct BottomSheetPage {
+import { AppTitleBar } from '../../widgets/AppTitleBar'
+import { AppRadius } from '../../common/AppConstants'
+@ComponentV2
+export struct BottomSheetPage {
   x:string[] = ['1','2'];
-  @State show:boolean = false
-  @State show2:boolean = false
-  @State show3:boolean = false
+  @Local show:boolean = false
+  @Local show2:boolean = false
+  @Local show3:boolean = false
   build() {
     Column() {
       Button('Hello').onClick(e=>{
@@ -44,4 +45,17 @@ function bottomDialogWidget(data:string[]){
       }
     })
   }
+  .borderRadius(AppRadius.screenSheet)
+  .backgroundColor($r('app.color.app_surface'))
+}
+@Builder
+export function BottomSheetPageBuilder() {
+  NavDestination() {
+    Column() {
+      AppTitleBar({ title: 'BottomSheetPage' })
+      Column() {
+        BottomSheetPage()
+      }.width('100%').layoutWeight(1)
+    }.width('100%').height('100%')
+  }.hideTitleBar(true)
 }

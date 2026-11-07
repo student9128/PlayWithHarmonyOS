@@ -1,9 +1,8 @@
 import { CustomTitleBar } from '../../widgets/CustomTitleBar'
 
-@Entry
-@Component
-struct DatePickerPage {
-  @State message: string = 'DatePickerPage'
+@ComponentV2
+export struct DatePickerPage {
+  @Local message: string = 'DatePickerPage'
 
   build() {
     Column() {
@@ -17,4 +16,10 @@ struct DatePickerPage {
     }}
     .height('100%')
   }
+}
+@Builder
+export function DatePickerPageBuilder() {
+  NavDestination() {
+    DatePickerPage()
+  }.hideTitleBar(true)
 }

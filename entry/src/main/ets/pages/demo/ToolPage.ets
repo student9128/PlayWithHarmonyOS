@@ -2,7 +2,7 @@
 export function ToolPageBuilder(){
   ToolPage()
 }
-@Component
+@ComponentV2
 export struct ToolPage {
   build() {
     Column() {

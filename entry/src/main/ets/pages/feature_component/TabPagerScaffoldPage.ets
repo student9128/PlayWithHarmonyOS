@@ -3,9 +3,8 @@ import { KLTabString } from '../../widgets/KLTab'
 import { CustomTitleBar } from '../../widgets/CustomTitleBar'
 import { showToast } from '../../utils/ToastUtils'
 
-@Entry
 @ComponentV2
-struct TabPagerScaffoldPage {
+export struct TabPagerScaffoldPage {
   @Local parentTabs: PagerTabItem[] = [
     new PagerTabItem('tab1', 'Tab1'),
     new PagerTabItem('tab2', 'Tab2'),
@@ -119,4 +118,10 @@ struct TabPagerScaffoldPage {
       this.rightFunctionBuilder()
     }.width('100%').backgroundColor(Color.White)
   }
+}
+@Builder
+export function TabPagerScaffoldPageBuilder() {
+  NavDestination() {
+    TabPagerScaffoldPage()
+  }.hideTitleBar(true)
 }

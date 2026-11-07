@@ -1,9 +1,8 @@
 import { CustomTitleBar } from '../../widgets/CustomTitleBar'
 
-@Entry
-@Component
-struct ImageAnimatorPage {
-  @State message: string = "ImageAnimatorPage"
+@ComponentV2
+export struct ImageAnimatorPage {
+  @Local message: string = "ImageAnimatorPage"
 
   build() {
     Column() {
@@ -17,4 +16,10 @@ struct ImageAnimatorPage {
     }}
     .height('100%')
   }
+}
+@Builder
+export function ImageAnimatorPageBuilder() {
+  NavDestination() {
+    ImageAnimatorPage()
+  }.hideTitleBar(true)
 }

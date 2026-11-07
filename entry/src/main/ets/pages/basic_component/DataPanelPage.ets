@@ -1,9 +1,8 @@
 import { CustomTitleBar } from '../../widgets/CustomTitleBar'
 
-@Entry
-@Component
-struct DataPanelPage {
-  @State message: string = 'DataPanelPage'
+@ComponentV2
+export struct DataPanelPage {
+  @Local message: string = 'DataPanelPage'
 
   build() {
     Column() {
@@ -17,4 +16,10 @@ struct DataPanelPage {
     }}
     .height('100%')
   }
+}
+@Builder
+export function DataPanelPageBuilder() {
+  NavDestination() {
+    DataPanelPage()
+  }.hideTitleBar(true)
 }

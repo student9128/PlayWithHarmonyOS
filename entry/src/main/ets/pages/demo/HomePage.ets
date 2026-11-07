@@ -2,7 +2,7 @@
 export function HomePageBuilder(){
   HomePage()
 }
-@Component
+@ComponentV2
 export struct HomePage {
   build() {
     Column() {

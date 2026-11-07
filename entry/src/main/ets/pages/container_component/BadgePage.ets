@@ -1,9 +1,8 @@
 import { CustomTitleBar } from '../../widgets/CustomTitleBar'
 
-@Entry
-@Component
-struct BadgePage {
-  @State message: string = "BadgePage"
+@ComponentV2
+export struct BadgePage {
+  @Local message: string = "BadgePage"
 
   build() {
     Column() {
@@ -18,4 +17,10 @@ struct BadgePage {
     }
     .height('100%')
   }
+}
+@Builder
+export function BadgePageBuilder() {
+  NavDestination() {
+    BadgePage()
+  }.hideTitleBar(true)
 }
